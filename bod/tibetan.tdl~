@@ -416,8 +416,7 @@ verb-lex := verb-lex-super &
                 ASPECT-MARKER-PREFIXES-FLAG - ] ].
 
 main-verb-lex := verb-lex & basic-verb-lex &
-  [ SYNSEM.LOCAL [ CAT [ HEAD [ AUX -,
-    		       	        FORM mv ],
+  [ SYNSEM.LOCAL [ CAT [ HEAD.AUX -,
                          VAL [ SPR < >,
                                SPEC < >,
                                SUBJ < #subj > ] ],
@@ -497,7 +496,7 @@ obj-dat-trans-verb-lex-verb-lex := transtive-verb-lex-verb-lex &
                            COMPS.FIRST.LOCAL.CAT.HEAD.CASE dat ] ].
 
 transtive-verb-lex-verb-lex := super-main-verb-lex-verb-lex & transitive-verb-lex &
-  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.OPT + ].
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.OPT - ].
 
 abs-dat-transitive-verb-lex := transtive-verb-lex-verb-lex &
   [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD.CASE abs,
@@ -548,7 +547,8 @@ comp-accept-verb-lex := super-main-verb-lex-verb-lex & clausal-verb-lex & clausa
 
 unspec-trans-verb-lex := transitive-verb-lex &
   [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD.CASE abs,
-                           COMPS.FIRST.LOCAL.CAT.HEAD.CASE abs ] ] &
+                           COMPS.FIRST.LOCAL.CAT.HEAD.CASE abs ] ,
+    INFLECTED.CONTRACTED-RULE-FLAG + ] &
   [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.E.TENSE past,
                    CAT.VAL [ SUBJ.FIRST.OPT -,
                              COMPS.FIRST.OPT - ] ] ].
@@ -610,8 +610,7 @@ subj-raise-aux := aux-lex & trans-first-arg-raising-lex-item &
 
 subj-raise-aux-no-pred := subj-raise-aux & raise-sem-lex-item &
   [ ARG-ST < [ ],
-             [ LOCAL.CAT.HEAD.AUX bool ] > ,
-    INFLECTED.CONTRACTED-RULE-FLAG + ].
+             [ LOCAL.CAT.HEAD.AUX bool ] > ].
 
 
 ;;; Xinyi Ji 0209 FORM
@@ -781,6 +780,7 @@ med-aux-lex := subj-raise-aux-with-pred &
                 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
                 1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
                 1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
+                CONTRACTED-RULE-FLAG -,
                 BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
                 MED-AUX-OR-YOD-AUX-FLAG + ] ].
 
@@ -790,6 +790,7 @@ man-aux-lex := subj-raise-aux-with-pred &
     INFLECTED [ 1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG +,
                 1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
                 1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
+                CONTRACTED-RULE-FLAG -,
                 BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
                 1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG + ] ].
 
@@ -801,6 +802,7 @@ yogmared-aux-lex := subj-raise-aux-with-pred &
                 1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
                 1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
                 1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
+                CONTRACTED-RULE-FLAG -,
                 BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ] ].
 
 ; To keep the semantically empty ones from spinning on
@@ -1399,7 +1401,7 @@ negation-marker-rule2-lex-rule := infl-lex-rule & negation-marker-rule-lex-rule 
                     CONTRACTED-RULE-FLAG #contracted-rule ] ].
 
 contracted-rule-lex-rule := const-lex-rule & negation-marker-rule-lex-rule &
-  [ DTR.INFLECTED [ 1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG na ], 
+  [ DTR.INFLECTED.1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG na,
     INFLECTED.CONTRACTED-RULE-FLAG + ].
 
 empty-polarity-marker-rule-lex-rule := add-only-no-ccont-rule & const-lex-rule & polarity-marker-lex-rule-super &
@@ -1842,6 +1844,8 @@ inv-monopoly-mid-coord-rule := mid-coord-rule &
 ;
 
 
+;;; Coordination Strategy 1
+
 n1-same-same-same-top-coord-rule := basic-n-top-coord-rule & monopoly-top-coord-rule & same-same-same-case-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
@@ -1863,17 +1867,6 @@ np1-bottom-coord-rule := conj-first-bottom-coord-rule & np-bottom-coord-phrase &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
 ;;; Coordination Strategy 2
-
-;;; EMB 2018-02-08 Paramaterized list type to restrict VP coordination to VPs that are either COMPS < > or are looking for non-verby complements.  This is probably a hack. The goal is to rule out coordination of auxiliaries.  May run afoul of coordination of sentential complement taking verbs.
-
-non-v-list := list.
-
-non-v-cons := olist & cons &
-  [ FIRST [ LOCAL.CAT.HEAD +njrpcdmo ],
-    REST  non-v-list ].
-
-non-v-null := non-v-list & null.
-
 
 vp2-top-coord-rule := basic-vp-top-coord-rule & apoly-top-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "2" ].

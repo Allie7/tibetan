@@ -2,7 +2,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Grammar of Tibetan
 ;;; created at:
-;;;     Thu Feb 15 07:28:40 UTC 2018
+;;;     Sat Feb 17 09:02:26 UTC 2018
 ;;; based on Matrix customization system version of:
 ;;;     Mon Feb 12 22:50:16 UTC 2018
 ;;;
@@ -33,78 +33,83 @@ head :+ [ PRON bool,
 
 noun :+ [ CASE case ].
 
-coord-phrase :+ [ SYNSEM.LOCAL.CAT.HEAD.NMZ #nmz,
-    LCOORD-DTR.SYNSEM.LOCAL.CAT.HEAD.NMZ #nmz,
-    RCOORD-DTR.SYNSEM.LOCAL.CAT.HEAD.NMZ #nmz ].
+coord-phrase :+ [ SYNSEM [ LOCAL.CAT.HEAD.NMZ #nmz,
+             SUBORDINATED #subord ],
+    LCOORD-DTR.SYNSEM [ LOCAL.CAT.HEAD.NMZ #nmz,
+                        SUBORDINATED #subord ],
+    RCOORD-DTR.SYNSEM [ LOCAL.CAT.HEAD.NMZ #nmz,
+                        SUBORDINATED #subord ] ].
 
-unary-bottom-coord-rule :+ [ SYNSEM.LOCAL.CAT.HEAD.NMZ #nmz,
-    ARGS < [ SYNSEM.LOCAL.CAT.HEAD.NMZ #nmz ] > ].
+unary-bottom-coord-rule :+ [ SYNSEM [ LOCAL.CAT.HEAD.NMZ #nmz,
+             SUBORDINATED #subord ],
+    ARGS < [ SYNSEM [ LOCAL.CAT.HEAD.NMZ #nmz,
+                      SUBORDINATED #subord ] ] > ].
 
 inflected :+ [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG luk,
-    1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG luk,
-    SIMPLE-PERFECT-FLAG luk,
-    BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG luk,
-    1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG luk,
-    1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG luk,
-    NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG luk,
-    TENSE-MARKER-FLAG luk,
-    ASPECT-MARKER-PREFIXES-FLAG luk,
-    1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG luk,
-    POLARITY-MARKER-FLAG luk,
-    GENITIVE-LEX-RULE-FLAG luk,
-    CONTRACTED-RULE-FLAG luk,
-    MED-AUX-OR-YOD-AUX-FLAG luk,
-    1DUG-AUX-OR-YONG-AUX-FLAG luk,
+    BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG luk,
     PRON-NUM-MARKER-FLAG luk,
-    1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG luk,
-    ASPECT-MARKER-SUFFIXES-FLAG luk,
-    CASE-MARKER-FLAG luk,
-    POSSESSIVE-RULE-LEX-FLAG luk,
-    1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG luk,
-    MOOD-MARKER-FLAG luk,
-    NOUN-FLAG luk,
-    YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG luk,
-    BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG luk,
-    1DRA-AUX-FLAG luk,
-    1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG luk,
+    MED-AUX-OR-YOD-AUX-FLAG luk,
+    NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG luk,
+    SIMPLE-PERFECT-FLAG luk,
     NON-EMPTY-TENSE-MARKER-RULE-FLAG luk,
-    BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG luk,
+    BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG luk,
+    1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG luk,
+    POSSESSIVE-RULE-LEX-FLAG luk,
+    1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG luk,
     1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG luk,
+    CONTRACTED-RULE-FLAG luk,
+    ASPECT-MARKER-PREFIXES-FLAG luk,
+    1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG luk,
+    POLARITY-MARKER-FLAG luk,
+    CASE-MARKER-FLAG luk,
     BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG luk,
-    3RD_PERSON_F_LEX-NOUN-FLAG luk ].
+    1DUG-AUX-OR-YONG-AUX-FLAG luk,
+    1DRA-AUX-FLAG luk,
+    ASPECT-MARKER-SUFFIXES-FLAG luk,
+    3RD_PERSON_F_LEX-NOUN-FLAG luk,
+    GENITIVE-LEX-RULE-FLAG luk,
+    MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG luk,
+    1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG luk,
+    BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG luk,
+    1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG luk,
+    NOUN-FLAG luk,
+    MOOD-MARKER-FLAG luk,
+    1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG luk,
+    1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG luk,
+    TENSE-MARKER-FLAG luk ].
 
 infl-satisfied :+ [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG na-or-+,
-    1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG na-or-+,
-    SIMPLE-PERFECT-FLAG na-or-+,
-    BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG na-or-+,
-    1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG na-or-+,
-    1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG na-or-+,
-    NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG na-or-+,
-    TENSE-MARKER-FLAG na-or-+,
-    ASPECT-MARKER-PREFIXES-FLAG na-or-+,
-    1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG na-or-+,
-    POLARITY-MARKER-FLAG na-or-+,
-    GENITIVE-LEX-RULE-FLAG na-or-+,
-    CONTRACTED-RULE-FLAG na-or-+,
-    MED-AUX-OR-YOD-AUX-FLAG na-or-+,
-    1DUG-AUX-OR-YONG-AUX-FLAG na-or-+,
+    BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG na-or-+,
     PRON-NUM-MARKER-FLAG na-or-+,
-    1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG na-or-+,
-    ASPECT-MARKER-SUFFIXES-FLAG na-or-+,
-    CASE-MARKER-FLAG na-or-+,
-    POSSESSIVE-RULE-LEX-FLAG na-or-+,
-    1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG na-or-+,
-    MOOD-MARKER-FLAG na-or-+,
-    NOUN-FLAG na-or-+,
-    YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG na-or-+,
-    BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG na-or-+,
-    1DRA-AUX-FLAG na-or-+,
-    1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG na-or-+,
+    MED-AUX-OR-YOD-AUX-FLAG na-or-+,
+    NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG na-or-+,
+    SIMPLE-PERFECT-FLAG na-or-+,
     NON-EMPTY-TENSE-MARKER-RULE-FLAG na-or-+,
-    BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG na-or-+,
+    BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG na-or-+,
+    1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG na-or-+,
+    POSSESSIVE-RULE-LEX-FLAG na-or-+,
+    1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG na-or-+,
     1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG na-or-+,
+    CONTRACTED-RULE-FLAG na-or-+,
+    ASPECT-MARKER-PREFIXES-FLAG na-or-+,
+    1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG na-or-+,
+    POLARITY-MARKER-FLAG na-or-+,
+    CASE-MARKER-FLAG na-or-+,
     BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG na-or-+,
-    3RD_PERSON_F_LEX-NOUN-FLAG na-or-+ ].
+    1DUG-AUX-OR-YONG-AUX-FLAG na-or-+,
+    1DRA-AUX-FLAG na-or-+,
+    ASPECT-MARKER-SUFFIXES-FLAG na-or-+,
+    3RD_PERSON_F_LEX-NOUN-FLAG na-or-+,
+    GENITIVE-LEX-RULE-FLAG na-or-+,
+    MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG na-or-+,
+    1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG na-or-+,
+    BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG na-or-+,
+    1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG na-or-+,
+    NOUN-FLAG na-or-+,
+    MOOD-MARKER-FLAG na-or-+,
+    1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG na-or-+,
+    1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG na-or-+,
+    TENSE-MARKER-FLAG na-or-+ ].
 
 cat :+ [ POSSESSUM poss ].
 
@@ -130,24 +135,17 @@ possessor-1 := possessor & possessive-1.
 
 possessum-1 := possessum & possessive-1.
 
-basic-head-comp-phrase :+ [ SYNSEM.LOCAL.CAT.MC #mc,
-    HEAD-DTR.SYNSEM.LOCAL.CAT.MC #mc ].
+basic-head-comp-phrase :+ [ SYNSEM [ LOCAL.CAT.MC #mc,
+             SUBORDINATED #subord ],
+    HEAD-DTR.SYNSEM [ LOCAL.CAT.MC #mc,
+                      SUBORDINATED #subord ] ].
 
-basic-head-opt-subj-phrase :+ [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < > ].
+basic-head-opt-subj-phrase :+ [ SYNSEM.SUBORDINATED #subord,
+    HEAD-DTR.SYNSEM [ LOCAL.CAT.VAL.COMPS < >,
+                      SUBORDINATED #subord ] ].
 
 head-adj-int-phrase :+ [ NON-HEAD-DTR.SYNSEM.LOCAL.CAT [ HEAD.POSSESSOR nonpossessive,
                                     POSSESSUM nonpossessive ] ].
-
-;Added for adverbs
-adj-head-int-phrase := adj-head-phrase & isect-mod-phrase &
-  [ NON-HEAD-DTR.SYNSEM.LOCAL.CAT [ POSTHEAD - ] ].
-
-
-adj-head-int-phrase :+ [ NON-HEAD-DTR.SYNSEM.LOCAL.CAT [ HEAD.POSSESSOR nonpossessive,
-                                    POSSESSUM nonpossessive ] ].
-;
-
-
 
 adj-head-scop-phrase :+ [ NON-HEAD-DTR.SYNSEM.LOCAL.CAT [ HEAD.POSSESSOR nonpossessive,
                                     POSSESSUM nonpossessive ] ].
@@ -158,6 +156,38 @@ possessor-pron-1 := possessor & possessive-pron-1.
 
 basic-head-mod-phrase-simple :+ [ SYNSEM.LOCAL.CAT.MC #mc,
     HEAD-DTR.SYNSEM.LOCAL.CAT.MC #mc ].
+
+canonical-synsem :+ [ SUBORDINATED xsubord ].
+
+xsubord := *top*.
+
+none := xsubord.
+
+did := xsubord.
+
+before := xsubord.
+
+basic-head-subj-phrase :+ [ SYNSEM.SUBORDINATED #subord,
+    HEAD-DTR.SYNSEM.SUBORDINATED #subord ].
+
+basic-head-opt-comp-phrase :+ [ SYNSEM.SUBORDINATED #subord,
+    HEAD-DTR.SYNSEM.SUBORDINATED #subord ].
+
+adj-head-phrase :+ [ SYNSEM.SUBORDINATED #subord,
+    NON-HEAD-DTR.SYNSEM.SUBORDINATED #subord ].
+
+head-adj-phrase :+ [ SYNSEM.SUBORDINATED #subord,
+    NON-HEAD-DTR.SYNSEM.SUBORDINATED #subord ].
+
+non-local-change-only-lex-rule :+ same-subordinated-lex-rule.
+
+local-change-only-lex-rule :+ same-subordinated-lex-rule.
+
+cont-change-only-lex-rule :+ same-subordinated-lex-rule.
+
+cat-change-with-ccont-lex-rule :+ same-subordinated-lex-rule.
+
+add-only-rule :+ same-subordinated-lex-rule.
 
 ;;;;;;;;;;;;;;
 ;;; Features
@@ -201,64 +231,17 @@ comp-head-phrase := basic-head-1st-comp-phrase & head-final &
 subj-head-phrase := decl-head-subj-phrase & head-final &
   [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < > ].
 
-; JC working on wh questions 2-11
-
-eng-subj-head-phrase := head-valence-phrase & head-compositional & 
-              basic-binary-headed-phrase &
-  [ SYNSEM phr-synsem & 
-           [ LOCAL.CAT [ POSTHEAD +,
-                 HC-LIGHT -,
-                 VAL [ SUBJ < >,
-                       COMPS #comps,
-                       SPR #spr ] ] ],
-    C-CONT [ HOOK.INDEX.SF prop-or-ques,
-         RELS <! !>,
-         HCONS <! !>,
-         ICONS <! !> ],
-    HEAD-DTR.SYNSEM.LOCAL.CAT.VAL [ SUBJ < #synsem >,
-                    COMPS #comps,    
-                    SPR #spr ],
-    NON-HEAD-DTR.SYNSEM #synsem & canonical-synsem &
-       [ LOCAL [ CAT [ VAL [ SUBJ olist,
-                 COMPS olist,
-                 SPR olist ] ] ],
-         NON-LOCAL [ SLASH 0-dlist & [ LIST < > ],
-             REL 0-dlist ] ]].
-
-
-subj-head-phrase := eng-subj-head-phrase & head-final &
-  [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < > ].
-
-
-;
-
 ;;; Form
 
 form := *top*.
 nonfinite := form.
 finite := form.
-
-inner1 := form.
-inner2 := inner1.
-aux1 := form.
-aux3 := inner2.
-mv := inner2.
-aux2 := inner1.
-
-inner1-fin := inner1 & finite.
-inner2-fin := inner2 & inner1-fin.
-aux2-fin := inner1-fin & aux2.
-aux3-fin := inner2-fin & aux3.
-mv-fin := inner2-fin & mv.
-aux1-fin := aux1 & finite.
-
-inner1-inf := inner1 & nonfinite.
-inner2-inf := inner2 & inner1-inf.
-aux2-inf := inner1-inf & aux2.
-aux3-inf := inner2-inf & aux3.
-mv-inf := inner2-inf & mv.
-aux1-inf := aux1 & nonfinite.
-
+self-centered := form.
+other-centered := form.
+self-centered-witnessed := form.
+other-centered-witnessed := form.
+unwitnessed := form.
+marginal := form.
 
 ;;; Tense
 
@@ -285,45 +268,6 @@ wh-interr := mood.
 ;;; Lexical Types
 ;;;;;;;;;;;;;;;;;;;
 
-;;; Wh pronouns
-
-;; JC 2-11 for wh questions
-
-wh-pronoun-noun-lex := case-marker-rule-dtr & possessive-rule-lex-rule-dtr & norm-hook-lex-item & basic-icons-lex-item & 
-  [ SYNSEM [ LOCAL [ CAT [ HEAD noun,
-			   VAL [ SPR < >,
-				 SUBJ < >,
-				 COMPS < >,
-				 SPEC < > ] ],
-		     CONT [ HOOK.INDEX.PNG.PER 3rd,
-	                    RELS <! [ LBL #larg,
-				       ARG0 #ind & ref-ind ],
-				  [ PRED "wh_q_rel",
-				    ARG0 #ind,
-				    RSTR #harg ] !>,
-			    HCONS <! [ HARG #harg,
-				        LARG #larg ] !> ] ],
-	     NON-LOCAL.QUE <! #ind !> ] ].
-
-
-wh-int-cl := clause & head-compositional &  head-only &
-  [ SYNSEM [ LOCAL.CAT [ VAL #val,
-			 MC bool ],
-	     NON-LOCAL non-local-none ],
-    C-CONT [ RELS <! !>,
-	     HCONS <! !>,
-	     HOOK.INDEX.SF ques ],
-    HEAD-DTR.SYNSEM [ LOCAL.CAT [ HEAD verb & [ FORM finite ],
-				  VAL #val & 
-				    [ SUBJ < >,
-				      COMPS < > ] ],
-		      NON-LOCAL [ SLASH <! !>,
-				  REL <! !>,
-				  QUE <! ref-ind !> ] ] ].
-
-;end
-
-
 ;;; Nouns
 
 noun-lex := basic-noun-lex & basic-one-arg & no-hcons-lex-item & non-mod-lex-item & case-marker-rule-dtr & possessive-rule-lex-rule-dtr &
@@ -334,9 +278,9 @@ noun-lex := basic-noun-lex & basic-one-arg & no-hcons-lex-item & non-mod-lex-ite
                              SUBJ < >,
                              SPEC < > ],
                        HEAD.NMZ - ],
-    INFLECTED [ GENITIVE-LEX-RULE-FLAG na-or--,
+    INFLECTED [ NOUN-FLAG +,
                 BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG na-or--,
-                NOUN-FLAG + ] ].
+                GENITIVE-LEX-RULE-FLAG na-or-- ] ].
 
 no-spr-noun-lex := noun-lex &
   [ SYNSEM.LOCAL.CAT.VAL.SPR < [ OPT + ] > ].
@@ -361,18 +305,14 @@ common_noun_lex-noun-lex := noun-lex & pron-num-marker-rule-dtr &
                 CASE-MARKER-FLAG -,
                 POSSESSIVE-RULE-LEX-FLAG - ] ].
 
-pron-noun-lex := noun-lex & pron-num-marker-rule-dtr &
-  [ SYNSEM.LOCAL.CONT.HOOK.INDEX [ COG-ST activ-or-more,
-				   SPECI + ] ].
-
-1st_person_lex-noun-lex := no-spr-noun-lex & pron-noun-lex &
+1st_person_lex-noun-lex := no-spr-noun-lex & pron-num-marker-rule-dtr &
   [ SYNSEM.LOCAL [ CAT.HEAD.PRON +,
                    CONT.HOOK.INDEX.PNG.PER 1st ],
     INFLECTED [ PRON-NUM-MARKER-FLAG -,
                 CASE-MARKER-FLAG -,
                 POSSESSIVE-RULE-LEX-FLAG - ] ].
 
-3rd_person_m_lex-noun-lex := no-spr-noun-lex & pron-noun-lex &
+3rd_person_m_lex-noun-lex := no-spr-noun-lex & pron-num-marker-rule-dtr &
   [ SYNSEM.LOCAL [ CAT.HEAD.PRON +,
                    CONT.HOOK.INDEX.PNG [ GEND m,
                                          PER 3rd ] ],
@@ -380,7 +320,7 @@ pron-noun-lex := noun-lex & pron-num-marker-rule-dtr &
                 CASE-MARKER-FLAG -,
                 POSSESSIVE-RULE-LEX-FLAG - ] ].
 
-2nd_person_lex-noun-lex := no-spr-noun-lex & pron-noun-lex &
+2nd_person_lex-noun-lex := no-spr-noun-lex & pron-num-marker-rule-dtr &
   [ SYNSEM.LOCAL [ CAT.HEAD.PRON +,
                    CONT.HOOK.INDEX.PNG.PER 2nd ],
     INFLECTED [ PRON-NUM-MARKER-FLAG -,
@@ -393,31 +333,29 @@ proper_noun_lex-noun-lex := no-spr-noun-lex &
     INFLECTED [ CASE-MARKER-FLAG -,
                 POSSESSIVE-RULE-LEX-FLAG - ] ].
 
-3rd_person_f_lex-noun-lex := no-spr-noun-lex & pron-noun-lex &
+3rd_person_f_lex-noun-lex := no-spr-noun-lex & pron-num-marker-rule-dtr &
   [ SYNSEM.LOCAL [ CAT.HEAD.PRON +,
                    CONT.HOOK.INDEX.PNG [ PER 3rd,
                                          GEND f ] ],
     INFLECTED [ PRON-NUM-MARKER-FLAG -,
-                3RD_PERSON_F_LEX-NOUN-FLAG +,
                 CASE-MARKER-FLAG -,
+                3RD_PERSON_F_LEX-NOUN-FLAG +,
                 POSSESSIVE-RULE-LEX-FLAG - ] ].
 
 ;;; Verbs
 
-verb-lex-super := non-mod-lex-item & aspect-marker-prefixes-rule-dtr & aspect-marker-suffixes-rule-dtr & mood-marker-rule-dtr & nominalizer-rule-dtr & polarity-marker-rule-dtr & tense-marker-rule-dtr.
-
-verb-lex := verb-lex-super &
-  [ SYNSEM.LOCAL.CAT.HEAD verb &
-                          [ NMZ - ],
-    INFLECTED [ MOOD-MARKER-FLAG -,
-                ASPECT-MARKER-SUFFIXES-FLAG -,
+verb-lex := non-mod-lex-item & aspect-marker-prefixes-rule-dtr & aspect-marker-suffixes-rule-dtr & mood-marker-rule-dtr & nominalizer-rule-dtr & polarity-marker-rule-dtr & tense-marker-rule-dtr &
+  [ INFLECTED [ ASPECT-MARKER-PREFIXES-FLAG -,
+                MOOD-MARKER-FLAG -,
                 POLARITY-MARKER-FLAG -,
-                TENSE-MARKER-FLAG -,
-                ASPECT-MARKER-PREFIXES-FLAG - ] ].
+                ASPECT-MARKER-SUFFIXES-FLAG -,
+                TENSE-MARKER-FLAG - ],
+    SYNSEM [ LOCAL.CAT.HEAD verb &
+                            [ NMZ - ],
+             SUBORDINATED none ] ].
 
 main-verb-lex := verb-lex & basic-verb-lex &
-  [ SYNSEM.LOCAL [ CAT [ HEAD [ AUX -,
-    		       	        FORM mv ],
+  [ SYNSEM.LOCAL [ CAT [ HEAD.AUX -,
                          VAL [ SPR < >,
                                SPEC < >,
                                SUBJ < #subj > ] ],
@@ -428,27 +366,18 @@ main-verb-lex := verb-lex & basic-verb-lex &
                                        COMPS < > ] ],
                            CONT.HOOK.INDEX #xarg ] ] ].
 
-
-;
-; No argument optionality for aux verbs
-; JC 02-11
 aux-lex := verb-lex &
-  [ SYNSEM.LOCAL.CAT [ HEAD.AUX +,
-		       VAL.COMPS < [OPT - ,
-				    LOCAL.CAT.HEAD.NMZ - ] > ],
-    INFLECTED [ MOOD-MARKER-FLAG -,
-                ASPECT-MARKER-SUFFIXES-FLAG -,
+  [ SYNSEM.LOCAL.CAT.HEAD.AUX +,
+    INFLECTED [ ASPECT-MARKER-PREFIXES-FLAG -,
+                MOOD-MARKER-FLAG -,
                 POLARITY-MARKER-FLAG -,
-                TENSE-MARKER-FLAG -,
-                ASPECT-MARKER-PREFIXES-FLAG - ] ].
+                ASPECT-MARKER-SUFFIXES-FLAG -,
+                TENSE-MARKER-FLAG - ] ].
 
 intransitive-verb-lex := main-verb-lex & intransitive-lex-item &
   [ SYNSEM.LOCAL.CAT.VAL.COMPS < >,
     ARG-ST.FIRST.LOCAL.CAT.HEAD noun ].
 
-
-;attempt to cut down on overgeneration by specifying tense didn't work
-;  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.TENSE past,
 transitive-verb-lex := main-verb-lex & transitive-lex-item &
   [ SYNSEM.LOCAL.CAT.VAL.COMPS < #comps >,
     ARG-ST < [ LOCAL.CAT.HEAD noun ],
@@ -497,86 +426,51 @@ obj-dat-trans-verb-lex-verb-lex := transtive-verb-lex-verb-lex &
                            COMPS.FIRST.LOCAL.CAT.HEAD.CASE dat ] ].
 
 transtive-verb-lex-verb-lex := super-main-verb-lex-verb-lex & transitive-verb-lex &
-  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.OPT + ].
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.OPT - ].
 
 abs-dat-transitive-verb-lex := transtive-verb-lex-verb-lex &
   [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD.CASE abs,
                            COMPS.FIRST.LOCAL.CAT.HEAD.CASE dat ] ].
 
-yin-verb-lex := transitive-verb-lex &
-  [ INFLECTED [ YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG +,
-                CONTRACTED-RULE-FLAG na,
-		NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG na,
-		NON-EMPTY-TENSE-MARKER-RULE-FLAG na ] ].
+yin-verb-lex := super-main-verb-lex-verb-lex & transitive-verb-lex &
+  [ INFLECTED.MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG + ].
 
-red-verb-lex := transitive-verb-lex &
-  [ INFLECTED [ CONTRACTED-RULE-FLAG na,
-    	        NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG na,
-		NON-EMPTY-TENSE-MARKER-RULE-FLAG na ] ].
+red-verb-lex := super-main-verb-lex-verb-lex & transitive-verb-lex.
 
-yod-verb-lex := intransitive-verb-lex &
-  [ INFLECTED [ YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG +,
-		CONTRACTED-RULE-FLAG na,
-		NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG na,
-		NON-EMPTY-TENSE-MARKER-RULE-FLAG na  ] ].
+yod-verb-lex := super-main-verb-lex-verb-lex & intransitive-verb-lex &
+  [ INFLECTED.MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG + ].
 
-1dug-verb-lex := intransitive-verb-lex & 
-  [ INFLECTED [ CONTRACTED-RULE-FLAG na,
-    	        NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG na,
-		NON-EMPTY-TENSE-MARKER-RULE-FLAG na  ] ].
+1dug-verb-lex := super-main-verb-lex-verb-lex & intransitive-verb-lex.
 
-yogred-verb-lex := intransitive-verb-lex &
-  [ INFLECTED [ YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG + ,
-		CONTRACTED-RULE-FLAG na,
-		NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG na,
-		NON-EMPTY-TENSE-MARKER-RULE-FLAG na  ] ].
+yogred-verb-lex := super-main-verb-lex-verb-lex & transitive-verb-lex &
+  [ INFLECTED.MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG + ].
 
-man-verb-lex :=  transitive-verb-lex &
-  [ INFLECTED [ YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG +,
-                CONTRACTED-RULE-FLAG -,
-		NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG na,
-		NON-EMPTY-TENSE-MARKER-RULE-FLAG na  ] ].
+man-verb-lex := super-main-verb-lex-verb-lex & transitive-verb-lex &
+  [ INFLECTED.CONTRACTED-RULE-FLAG - ].
 
-med-verb-lex := intransitive-verb-lex &
-  [ INFLECTED [ YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG +,
-		CONTRACTED-RULE-FLAG -,
-		NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG na,
-		NON-EMPTY-TENSE-MARKER-RULE-FLAG na  ] ].
+med-verb-lex := super-main-verb-lex-verb-lex & erg-abs-transitive-verb-lex &
+  [ INFLECTED.CONTRACTED-RULE-FLAG - ].
 
-yogmared-verb-lex := intransitive-verb-lex &
-  [ INFLECTED [ YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG +,
-		CONTRACTED-RULE-FLAG -,
-		NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG na,
-		NON-EMPTY-TENSE-MARKER-RULE-FLAG na  ] ].
+yogmared-verb-lex := super-main-verb-lex-verb-lex & erg-abs-transitive-verb-lex &
+  [ INFLECTED.CONTRACTED-RULE-FLAG - ].
 
-song-verb-lex := abs-intransitive-verb-lex &
-  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.TENSE past,
-    INFLECTED [ BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG + ,
-		CONTRACTED-RULE-FLAG na,
-		NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG na,
-		NON-EMPTY-TENSE-MARKER-RULE-FLAG na  ] ].
+song-verb-lex := super-main-verb-lex-verb-lex & abs-intransitive-verb-lex &
+  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.TENSE past ].
 
 comp-accept-verb-lex := super-main-verb-lex-verb-lex & clausal-verb-lex & clausal-second-arg-trans-lex-item &
   [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.E.TENSE present,
                    CAT.VAL.COMPS < [ LOCAL.CAT.HEAD noun &
-                                                    [ NMZ + ] ] > ],
-    INFLECTED.CONTRACTED-RULE-FLAG na ].
+                                                    [ NMZ + ] ] > ] ].
 
-;Constraining unspecified transitive for generation purposes
-
-unspec-trans-verb-lex := transitive-verb-lex &
-  [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD.CASE abs,
-                           COMPS.FIRST.LOCAL.CAT.HEAD.CASE abs ] ] &
+unspec-trans-verb-lex := super-main-verb-lex-verb-lex & transitive-verb-lex &
   [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.E.TENSE past,
                    CAT.VAL [ SUBJ.FIRST.OPT -,
                              COMPS.FIRST.OPT - ] ] ].
-;
 
 super-main-verb-lex-verb-lex := verb-lex &
   [ INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG +,
-                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ,
-		CONTRACTED-RULE-FLAG na ] ].
+                BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG +,
+                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ] ].
 
 no-subj-drop-verb-lex := verb-lex &
   [ SYNSEM.LOCAL.CAT.VAL.SUBJ.FIRST.OPT - ].
@@ -628,22 +522,16 @@ subj-raise-aux := aux-lex & trans-first-arg-raising-lex-item &
 
 subj-raise-aux-no-pred := subj-raise-aux & raise-sem-lex-item &
   [ ARG-ST < [ ],
-             [ LOCAL.CAT.HEAD.AUX bool ] > ,
-    INFLECTED.CONTRACTED-RULE-FLAG na ].
-
-
-;;; Xinyi Ji 0209 FORM
-
+             [ LOCAL.CAT.HEAD.AUX - ] > ].
 
 yin-aux-lex := subj-raise-aux-no-pred &
-  [ SYNSEM.LOCAL.CAT [ HEAD.FORM aux2,
-		       VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM inner2-inf ],
-    INFLECTED [ 1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG +,
-                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM form,
+    INFLECTED [ BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG +,
+                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG +,
                 1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
-                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG +,
-                YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG + ] ].
+                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG + ] ].
 
 ; To keep the semantically empty ones from spinning on
 ; generation, require complement to be [AUX -].  The
@@ -652,15 +540,14 @@ yin-aux-lex := subj-raise-aux-no-pred &
 ; might not be true.
 
 red-aux-lex := subj-raise-aux-no-pred &
-  [ SYNSEM.LOCAL.CAT [ HEAD.FORM  aux1,
-		       VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM inner1-inf ],
-    INFLECTED [ BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG +,
-                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM form,
+    INFLECTED [ 1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG +,
+                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
                 1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG +,
                 1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
-                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG + ] ].
+                1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG +,
+                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ] ].
 
 ; To keep the semantically empty ones from spinning on
 ; generation, require complement to be [AUX -].  The
@@ -670,15 +557,14 @@ red-aux-lex := subj-raise-aux-no-pred &
 
 yod-aux-lex := subj-raise-aux-no-pred &
   [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.E.ASPECT prf,
-                   CAT [ HEAD.FORM aux3,
-		         VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM mv-inf ]  ],
-    INFLECTED [ 1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
-                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                   CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM form ],
+    INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
                 MED-AUX-OR-YOD-AUX-FLAG +,
-                YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG + ] ].
+                MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG +,
+                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
+                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
+                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ] ].
 
 ; To keep the semantically empty ones from spinning on
 ; generation, require complement to be [AUX -].  The
@@ -688,16 +574,15 @@ yod-aux-lex := subj-raise-aux-no-pred &
 
 yogred-aux-lex := subj-raise-aux-no-pred &
   [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.E.ASPECT prf,
-                   CAT [ HEAD.FORM aux1 ,
-			 VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM inner1-inf ]  ],
-    INFLECTED [ 1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
-                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                   CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM form ],
+    INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
                 1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
-                YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG + ] ].
+                MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG +,
+                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
+                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
+                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ] ].
 
 ; To keep the semantically empty ones from spinning on
 ; generation, require complement to be [AUX -].  The
@@ -707,16 +592,15 @@ yogred-aux-lex := subj-raise-aux-no-pred &
 
 1dug-aux-lex := subj-raise-aux-no-pred &
   [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.E.ASPECT prf,
-                   CAT [ HEAD.FORM aux1 ,
-			 VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM inner1-inf ] ],
-    INFLECTED [ 1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                   CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM form ],
+    INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
                 1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG +,
-                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
+                1DUG-AUX-OR-YONG-AUX-FLAG +,
                 1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
+                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
                 1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG +,
-                1DUG-AUX-OR-YONG-AUX-FLAG + ] ].
+                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ] ].
 
 ; To keep the semantically empty ones from spinning on
 ; generation, require complement to be [AUX -].  The
@@ -725,13 +609,12 @@ yogred-aux-lex := subj-raise-aux-no-pred &
 ; might not be true.
 
 1dra-aux-lex := subj-raise-aux-no-pred &
-  [ SYNSEM.LOCAL.CAT [ HEAD.FORM aux1 ,
-		       VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM inner1-inf ],
-    INFLECTED [ 1DRA-AUX-FLAG +,
-                1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM form,
+    INFLECTED [ 1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                1DRA-AUX-FLAG +,
                 1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
-                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG + ] ].
+                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG +,
+                1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG + ] ].
 
 ; To keep the semantically empty ones from spinning on
 ; generation, require complement to be [AUX -].  The
@@ -742,15 +625,14 @@ yogred-aux-lex := subj-raise-aux-no-pred &
 byung-aux-lex := subj-raise-aux-no-pred &
   [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.E [ TENSE past,
                                        ASPECT prf ],
-                   CAT [ HEAD.FORM aux1,
-			 VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM inner1-inf ]  ],
-    INFLECTED [ BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG +,
-                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG +,
-                BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG +,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
+                   CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM form ],
+    INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG +,
                 BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ] ].
+                BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG +,
+                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
+                1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG +,
+                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ] ].
 
 ; To keep the semantically empty ones from spinning on
 ; generation, require complement to be [AUX -].  The
@@ -761,15 +643,14 @@ byung-aux-lex := subj-raise-aux-no-pred &
 song-aux-lex := subj-raise-aux-no-pred &
   [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.E [ TENSE past,
                                        ASPECT prf ],
-                   CAT [ HEAD.FORM aux1,
-			 VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM inner1-inf ]  ],
-    INFLECTED [ BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG +,
-                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                   CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM form ],
+    INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG +,
                 1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG +,
-                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG +,
                 BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ] ].
+                BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG +,
+                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ] ].
 
 ; To keep the semantically empty ones from spinning on
 ; generation, require complement to be [AUX -].  The
@@ -779,47 +660,49 @@ song-aux-lex := subj-raise-aux-no-pred &
 
 yong-aux-lex := subj-raise-aux-no-pred &
   [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.E.TENSE future,
-                   CAT [ HEAD.FORM aux1,
-			 VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM inner1-inf ]  ],
+                   CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM form ],
     INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
                 1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG +,
+                1DUG-AUX-OR-YONG-AUX-FLAG +,
+                BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG +,
                 1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG +,
                 BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DUG-AUX-OR-YONG-AUX-FLAG + ] ].
+                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ] ].
 
 subj-raise-aux-with-pred := subj-raise-aux & norm-sem-lex-item & trans-first-arg-raising-lex-item-1.
 
 med-aux-lex := subj-raise-aux-with-pred &
   [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.E.ASPECT prf,
-                   CAT [ HEAD.FORM aux3 ,
-			 VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM mv-inf ] ],
-    INFLECTED [ 1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
+                   CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM form ],
+    INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                MED-AUX-OR-YOD-AUX-FLAG +,
+                MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG +,
+                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
                 BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                MED-AUX-OR-YOD-AUX-FLAG + ] ].
+                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
+                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                CONTRACTED-RULE-FLAG - ] ].
 
 man-aux-lex := subj-raise-aux-with-pred &
-  [ SYNSEM.LOCAL.CAT [ HEAD.FORM aux2,
-		       VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM inner2-inf ],
-    INFLECTED [ 1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG +,
-                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM form,
+    INFLECTED [ BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG +,
+                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG +,
                 1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
-                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG + ] ].
+                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG +,
+                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ] ].
 
 yogmared-aux-lex := subj-raise-aux-with-pred &
   [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.E.ASPECT prf,
-                   CAT [ HEAD.FORM aux1,
-			 VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM inner1-inf ]  ],
-    INFLECTED [ 1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
+                   CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM form ],
+    INFLECTED [ BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
                 1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
-                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG +,
+                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
                 1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG +,
-                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ] ].
+                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
+                CONTRACTED-RULE-FLAG - ] ].
 
 ; To keep the semantically empty ones from spinning on
 ; generation, require complement to be [AUX -].  The
@@ -830,24 +713,14 @@ yogmared-aux-lex := subj-raise-aux-with-pred &
 ryguin-aux-lex := subj-raise-aux-no-pred &
   [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.E [ TENSE present,
                                        ASPECT pros ],
-                   CAT [  HEAD.FORM aux2 ,
-			  VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM inner2-inf ] ],
+                   CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM form ],
     INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ] ].
+                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ] ].
 
 myong-aux-lex := subj-raise-aux-with-pred &
-  [ SYNSEM.LOCAL.CAT [ HEAD.FORM aux1,
-		       VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM inner1-inf,
-                       VAL.COMPS < [ OPT - ] >              ],
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM form,
     INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ] ].
-
-
-tshar-aux-lex := subj-raise-aux-with-pred &
-  [ SYNSEM.LOCAL.CAT [ HEAD.FORM aux3,
-		       VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM inner2-inf ],
-    INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG +,
-                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ] ].
+                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ] ].
 
 ; To keep the semantically empty ones from spinning on
 ; generation, require complement to be [AUX -].  The
@@ -857,9 +730,8 @@ tshar-aux-lex := subj-raise-aux-with-pred &
 
 kyi-aux-lex := subj-raise-aux-no-pred &
   [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.E.ASPECT prog,
-                   CAT [ HEAD.FORM aux1,
-			 VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM inner1-inf ] ],
-    INFLECTED.1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ].
+                   CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM form ],
+    INFLECTED.1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG + ].
 
 ;;; Copulas
 
@@ -909,66 +781,76 @@ attr-adj-lex := adj-lex & intersective-mod-lex &
   [ SYNSEM.LOCAL.CAT.HEAD.MOD < [ LOCAL.CAT [ HEAD noun,
                                               VAL.SPR cons ] ] > ].
 
-
-
-;;;Adverbs
-
-adverb-lex := basic-adverb-lex & intersective-mod-lex &
-  [ SYNSEM [ LOCAL [ CAT [ HEAD.MOD < [ LOCAL.CAT.HEAD verb ]>,
-			   VAL [ SPR < >,
-				 SUBJ < >,
-				 COMPS < >,
-				 SPEC < > ]]]]].
-
-
-
-;;; Intensifier: can work on adverbs and adjectives
-;intense-lex := adj-lex & intersective-mod-lex
-;  [ SYNSEM [ LOCAL [ CAT [ HEAD.MOD < [ LOCAL.CAT.HEAD intersective-mod-lex ]>,
-;			   VAL [ SPR < >,
-;				 SUBJ < >,
-;				 COMPS < >,
-;				 SPEC < > ]]]]].
-
-
-cardinal-lex := attr-adj-lex.
-
 ;;;;;;;;;;;;;;;;;;;
 ;;; Subordinators
 ;;;;;;;;;;;;;;;;;;;
 
-adposition-subord-lex-item := single-rel-lex-item & norm-ltop-lex-item &
-  [ SYNSEM.LOCAL.CAT [ MC -,
-                       HEAD adp &
-                            [ MOD < [ LOCAL scopal-mod &
-                                            [ CAT [ HEAD verb,
-                                                    VAL.COMPS < > ] ] ] > ],
-                       VAL [ SUBJ < >,
+adverb-subord-lex-item := no-rels-hcons-lex-item &
+  [ SYNSEM.LOCAL.CAT [ VAL [ SUBJ < >,
                              SPR < >,
-                             COMPS < [ OPT -,
-                                       LOCAL.CAT [ MC -,
-                                                   VAL.COMPS < > ] ] > ] ] ].
+                             COMPS < > ],
+                       HEAD adv &
+                            [ MOD < [ SUBORDINATED none,
+                                      LOCAL intersective-mod &
+                                            [ CAT [ MC -,
+                                                    HEAD verb ] ] ] > ] ] ].
 
-subord-with-verbal-comp-lex := adposition-subord-lex-item &
-  [ SYNSEM [ LOCAL [ CAT [ HEAD.MOD < [ LOCAL [ CAT.HEAD verb,
-                                                CONT.HOOK [ LTOP #mod,
-                                                            INDEX #index ] ] ] >,
-                           VAL.COMPS < [ LOCAL [ CAT.HEAD verb,
-                                                 CONT.HOOK.LTOP #comps ] ] > ],
-                     CONT [ HCONS <! qeq &
-                                     [ HARG #h1,
-                                       LARG #mod ], qeq &
-                                                    [ HARG #h2,
-                                                      LARG #comps ] !>,
-                            HOOK.INDEX #index ] ],
-             LKEYS.KEYREL [ ARG1 #h1,
-                            ARG2 #h2 ] ] ].
+prehead-did-clause-final-adv-subord-lex-item := adverb-subord-lex-item &
+  [ SYNSEM [ SUBORDINATED did,
+             LOCAL.CAT [ HEAD.MOD < [ LOCAL.CAT.VAL [ SUBJ < >,
+                                                      COMPS < > ] ] >,
+                         POSTHEAD + ] ] ].
 
-s-attach-clause-final-prehead-subord-lex-item := subord-with-verbal-comp-lex &
-  [ SYNSEM.LOCAL.CAT [ VAL.COMPS < [ LOCAL.CAT.VAL.SUBJ < > ] >,
-                       POSTHEAD -,
-                       HEAD [ MOD < [ LOCAL.CAT.VAL.SUBJ < > ] >,
-                              INIT - ] ] ].
+prehead-before-clause-final-adv-subord-lex-item := adverb-subord-lex-item &
+  [ SYNSEM [ LOCAL.CAT.HEAD.MOD < [ LOCAL.CAT.VAL [ SUBJ < >,
+                                                    COMPS < > ] ] >,
+             SUBORDINATED before ] ].
+
+adv-marked-subord-clause-phrase := unary-phrase &
+  [ SYNSEM.LOCAL [ CAT [ MC -,
+                         VAL [ SPR < >,
+                               COMPS < >,
+                               SPEC < >,
+                               SUBJ #subj ],
+                         HEAD adp &
+                              [ MOD < [ LOCAL scopal-mod &
+                                              [ CAT [ HEAD verb,
+                                                      VAL [ SPR < >,
+                                                            COMPS < > ] ],
+                                                CONT.HOOK [ LTOP #mcl,
+                                                            INDEX #index ] ] ] > ] ],
+                   COORD - ],
+    C-CONT [ RELS <! arg12-ev-relation &
+                     [ ARG1 #mch,
+                       ARG2 #sch ] !>,
+             HCONS <! qeq &
+                      [ HARG #mch,
+                        LARG #mcl ], qeq &
+                                     [ HARG #sch,
+                                       LARG #scl ] !>,
+             HOOK.INDEX #index ],
+    ARGS < [ SYNSEM.LOCAL [ CAT [ HEAD verb &
+                                       [ MOD < > ],
+                                  VAL [ SUBJ #subj,
+                                        SPR < >,
+                                        COMPS < >,
+                                        SPEC < > ] ],
+                            CONT.HOOK.LTOP #scl,
+                            COORD - ] ] > ].
+
+did-modifying-clause-phrase := adv-marked-subord-clause-phrase &
+  [ C-CONT.RELS <! [ PRED "_did_subord_rel" ] !>,
+    ARGS < [ SYNSEM [ SUBORDINATED did,
+                      LOCAL.CAT.VAL.SUBJ < > ] ] >,
+    SYNSEM.LOCAL.CAT [ POSTHEAD -,
+                       HEAD.MOD < [ LOCAL.CAT.VAL.SUBJ < > ] > ] ].
+
+before-modifying-clause-phrase := adv-marked-subord-clause-phrase &
+  [ C-CONT.RELS <! [ PRED "_before_subord_rel" ] !>,
+    ARGS < [ SYNSEM [ SUBORDINATED before,
+                      LOCAL.CAT.VAL.SUBJ < > ] ] >,
+    SYNSEM.LOCAL.CAT [ POSTHEAD -,
+                       HEAD.MOD < [ LOCAL.CAT.VAL.SUBJ < > ] > ] ].
 
 ;;; Complementizers
 
@@ -977,34 +859,12 @@ s-attach-clause-final-prehead-subord-lex-item := subord-with-verbal-comp-lex &
 ;;; Determiners
 ;;; SPEC is non-empty, and already specified by basic-determiner-lex.
 
-determiner-lex-supertype := norm-hook-lex-item & basic-zero-arg & non-mod-lex-item &
-  [ SYNSEM [ LOCAL [ CAT [ HEAD det,
-			   VAL[ SPEC.FIRST.LOCAL.CONT.HOOK [ INDEX #ind,
-				  			     LTOP #larg ],
-                                SPR < >,
-                                SUBJ < >,
-                                COMPS < >]],
-		     CONT.HCONS <! qeq &
-				 [ HARG #harg,
-				   LARG #larg ] !> ], 
-	     LKEYS.KEYREL quant-relation &
-		   [ ARG0 #ind,
-		     RSTR #harg ] ] ].
-
-determiner-lex := determiner-lex-supertype & single-rel-lex-item.
+determiner-lex := basic-determiner-lex & norm-zero-arg & non-mod-lex-item &
+  [ SYNSEM.LOCAL.CAT.VAL [ SPR < >,
+                           COMPS < >,
+                           SUBJ < > ] ].
 
 determinant-adj-lex-determiner-lex := determiner-lex & no-icons-lex-item.
-
-demonstrative-determiner-lex := determiner-lex-supertype &
-[ SYNSEM [LOCAL [ CONT.RELS <! [ PRED "exist_q_rel" ], 
-                              #rel & arg1-ev-relation & 
-                                     [LBL #lbl , 
-                                      ARG1 #arg ] !> ,
-                  CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK [ INDEX #arg &
-                                                           [COG-ST activ+fam ],
-                                                       LTOP #lbl ] ],
-          LKEYS.ALTKEYREL #rel ] ].
-
 
 ;;;;;;;;;;;;;;;;;;;
 ;;; Lexical Rules
@@ -1046,71 +906,70 @@ case-marker-rule-dtr := word-or-lexrule.
 mood-marker-rule-dtr := word-or-lexrule.
 polarity-marker-rule-dtr := word-or-lexrule.
 possessive-rule-lex-rule-dtr := word-or-lexrule.
-nominalizer-marker-rule-dtr := word-or-lexrule.
 
 ;;; Lexical rule types
 
 case-marker-lex-rule-super := add-only-no-ccont-rule & possessive-rule-lex-rule-dtr &
   [ INFLECTED [ CASE-MARKER-FLAG +,
-                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
-                1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
-                BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-song-verb-or-super-main-verb-lex-verb-or-yong-aux,
-                1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
-                NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG #non-empty-aspect-prefix-marker,
-                TENSE-MARKER-FLAG #tense-marker,
-                ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
-                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
-                POLARITY-MARKER-FLAG #polarity-marker,
-                1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
-                MOOD-MARKER-FLAG #mood-marker,
-                CONTRACTED-RULE-FLAG #contracted-rule,
-                NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
-                MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
-                YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogred-aux-or-yogred-verb,
-                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
-                POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                NOUN-FLAG #noun,
                 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
-                1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
-                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
-                1DRA-AUX-FLAG #1dra-aux,
-                SIMPLE-PERFECT-FLAG #simple-perfect,
-                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-super-main-verb-lex-verb-or-yong-aux,
                 PRON-NUM-MARKER-FLAG #pron-num-marker,
+                MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
+                NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG #non-empty-aspect-prefix-marker,
+                SIMPLE-PERFECT-FLAG #simple-perfect,
+                NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
+                1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+                POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
+                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
+                CONTRACTED-RULE-FLAG #contracted-rule,
+                ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
+                1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
+                POLARITY-MARKER-FLAG #polarity-marker,
+                MOOD-MARKER-FLAG #mood-marker,
                 BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG #byung-aux-or-red-aux-or-song-aux,
-                3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun ],
+                1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
+                1DRA-AUX-FLAG #1dra-aux,
+                ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
+                MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #man-aux-or-med-aux-or-yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogmared-aux-or-yogred-aux-or-yogred-verb,
+                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
+                NOUN-FLAG #noun,
+                3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun,
+                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-man-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
+                TENSE-MARKER-FLAG #tense-marker ],
     DTR case-marker-rule-dtr &
-        [ INFLECTED [ 1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
-                      BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-song-verb-or-super-main-verb-lex-verb-or-yong-aux,
-                      1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
-                      NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG #non-empty-aspect-prefix-marker,
-                      TENSE-MARKER-FLAG #tense-marker,
-                      ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
-                      1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
-                      POLARITY-MARKER-FLAG #polarity-marker,
-                      1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
-                      MOOD-MARKER-FLAG #mood-marker,
-                      CONTRACTED-RULE-FLAG #contracted-rule,
-                      NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
-                      MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
-                      YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogred-aux-or-yogred-verb,
-                      1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                      ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
-                      POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                      NOUN-FLAG #noun,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
-                      1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
-                      1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
-                      1DRA-AUX-FLAG #1dra-aux,
-                      SIMPLE-PERFECT-FLAG #simple-perfect,
-                      BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+        [ INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
+                      BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-super-main-verb-lex-verb-or-yong-aux,
                       PRON-NUM-MARKER-FLAG #pron-num-marker,
+                      MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
+                      NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG #non-empty-aspect-prefix-marker,
+                      SIMPLE-PERFECT-FLAG #simple-perfect,
+                      NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
+                      1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+                      POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
+                      1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                      1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
+                      CONTRACTED-RULE-FLAG #contracted-rule,
+                      ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
+                      1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
+                      POLARITY-MARKER-FLAG #polarity-marker,
+                      MOOD-MARKER-FLAG #mood-marker,
                       BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG #byung-aux-or-red-aux-or-song-aux,
-                      3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun ] ] ].
+                      1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
+                      1DRA-AUX-FLAG #1dra-aux,
+                      ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
+                      MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #man-aux-or-med-aux-or-yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogmared-aux-or-yogred-aux-or-yogred-verb,
+                      1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                      BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                      1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
+                      NOUN-FLAG #noun,
+                      3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun,
+                      1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                      1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-man-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
+                      TENSE-MARKER-FLAG #tense-marker ] ] ].
 
 bare-abs-rule-lex-rule := case-marker-lex-rule-super & const-lex-rule &
   [ INFLECTED [ BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG +,
@@ -1145,69 +1004,69 @@ instrumental-lex-rule-lex-rule := case-marker-lex-rule-super & infl-lex-rule &
 
 pron-num-marker-lex-rule-super := add-only-no-ccont-rule & case-marker-rule-dtr & possessive-rule-lex-rule-dtr &
   [ INFLECTED [ PRON-NUM-MARKER-FLAG +,
-                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
-                1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
-                BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-song-verb-or-super-main-verb-lex-verb-or-yong-aux,
-                1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
-                CASE-MARKER-FLAG #case-marker,
-                TENSE-MARKER-FLAG #tense-marker,
-                ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
-                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
-                POLARITY-MARKER-FLAG #polarity-marker,
-                GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
-                CONTRACTED-RULE-FLAG #contracted-rule,
-                NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
-                MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
-                1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
-                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
-                POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                NOUN-FLAG #noun,
                 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
-                YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogred-aux-or-yogred-verb,
-                BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
-                MOOD-MARKER-FLAG #mood-marker,
-                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
-                1DRA-AUX-FLAG #1dra-aux,
-                SIMPLE-PERFECT-FLAG #simple-perfect,
+                BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-super-main-verb-lex-verb-or-yong-aux,
+                MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
                 NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG #non-empty-aspect-prefix-marker,
-                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                SIMPLE-PERFECT-FLAG #simple-perfect,
+                MOOD-MARKER-FLAG #mood-marker,
+                NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
+                BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
+                1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+                POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
+                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
                 1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
+                CONTRACTED-RULE-FLAG #contracted-rule,
+                ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
+                1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
+                POLARITY-MARKER-FLAG #polarity-marker,
+                CASE-MARKER-FLAG #case-marker,
                 BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG #byung-aux-or-red-aux-or-song-aux,
-                3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun ],
+                1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
+                1DRA-AUX-FLAG #1dra-aux,
+                ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
+                3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun,
+                MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #man-aux-or-med-aux-or-yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogmared-aux-or-yogred-aux-or-yogred-verb,
+                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
+                NOUN-FLAG #noun,
+                GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
+                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-man-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
+                TENSE-MARKER-FLAG #tense-marker ],
     DTR pron-num-marker-rule-dtr &
-        [ INFLECTED [ 1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
-                      BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-song-verb-or-super-main-verb-lex-verb-or-yong-aux,
-                      1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
-                      CASE-MARKER-FLAG #case-marker,
-                      TENSE-MARKER-FLAG #tense-marker,
-                      ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
-                      1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
-                      POLARITY-MARKER-FLAG #polarity-marker,
-                      GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
-                      CONTRACTED-RULE-FLAG #contracted-rule,
-                      NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
+        [ INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
+                      BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-super-main-verb-lex-verb-or-yong-aux,
                       MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
-                      1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
-                      1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                      ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
-                      POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                      NOUN-FLAG #noun,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
-                      YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogred-aux-or-yogred-verb,
-                      BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
-                      MOOD-MARKER-FLAG #mood-marker,
-                      1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
-                      1DRA-AUX-FLAG #1dra-aux,
-                      SIMPLE-PERFECT-FLAG #simple-perfect,
                       NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG #non-empty-aspect-prefix-marker,
-                      BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                      SIMPLE-PERFECT-FLAG #simple-perfect,
+                      MOOD-MARKER-FLAG #mood-marker,
+                      NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
+                      BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
+                      1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+                      POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
+                      1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
                       1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
+                      CONTRACTED-RULE-FLAG #contracted-rule,
+                      ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
+                      1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
+                      POLARITY-MARKER-FLAG #polarity-marker,
+                      CASE-MARKER-FLAG #case-marker,
                       BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG #byung-aux-or-red-aux-or-song-aux,
-                      3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun ] ] ].
+                      1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
+                      1DRA-AUX-FLAG #1dra-aux,
+                      ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
+                      3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun,
+                      MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #man-aux-or-med-aux-or-yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogmared-aux-or-yogred-aux-or-yogred-verb,
+                      1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                      BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                      1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
+                      NOUN-FLAG #noun,
+                      GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
+                      1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                      1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-man-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
+                      TENSE-MARKER-FLAG #tense-marker ] ] ].
 
 plural-pron-rule-lex-rule := infl-lex-rule & pron-num-marker-lex-rule-super &
   [ DTR.INFLECTED.3RD_PERSON_F_LEX-NOUN-FLAG na,
@@ -1217,69 +1076,69 @@ singular-pron-rule-lex-rule := const-lex-rule & pron-num-marker-lex-rule-super.
 
 possessive-rule-lex-lex-rule-super := const-lex-rule &
   [ INFLECTED [ POSSESSIVE-RULE-LEX-FLAG +,
-                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
-                1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
-                BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-song-verb-or-super-main-verb-lex-verb-or-yong-aux,
-                1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
-                CASE-MARKER-FLAG #case-marker,
-                TENSE-MARKER-FLAG #tense-marker,
-                ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
-                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
-                POLARITY-MARKER-FLAG #polarity-marker,
-                1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
-                GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
-                CONTRACTED-RULE-FLAG #contracted-rule,
-                NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
-                MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
-                1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
-                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                NOUN-FLAG #noun,
                 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
-                YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogred-aux-or-yogred-verb,
-                BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
-                MOOD-MARKER-FLAG #mood-marker,
-                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
-                1DRA-AUX-FLAG #1dra-aux,
-                SIMPLE-PERFECT-FLAG #simple-perfect,
                 NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG #non-empty-aspect-prefix-marker,
-                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-super-main-verb-lex-verb-or-yong-aux,
                 PRON-NUM-MARKER-FLAG #pron-num-marker,
+                MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
+                CASE-MARKER-FLAG #case-marker,
+                SIMPLE-PERFECT-FLAG #simple-perfect,
+                NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
+                BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
+                1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
+                CONTRACTED-RULE-FLAG #contracted-rule,
+                ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
+                1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
+                POLARITY-MARKER-FLAG #polarity-marker,
+                MOOD-MARKER-FLAG #mood-marker,
                 BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG #byung-aux-or-red-aux-or-song-aux,
-                3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun ],
+                1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
+                1DRA-AUX-FLAG #1dra-aux,
+                ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
+                3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun,
+                MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #man-aux-or-med-aux-or-yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogmared-aux-or-yogred-aux-or-yogred-verb,
+                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
+                NOUN-FLAG #noun,
+                GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
+                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-man-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
+                TENSE-MARKER-FLAG #tense-marker ],
     DTR possessive-rule-lex-rule-dtr &
-        [ INFLECTED [ 1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
-                      BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-song-verb-or-super-main-verb-lex-verb-or-yong-aux,
-                      1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
-                      CASE-MARKER-FLAG #case-marker,
-                      TENSE-MARKER-FLAG #tense-marker,
-                      ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
-                      1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
-                      POLARITY-MARKER-FLAG #polarity-marker,
-                      1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
-                      GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
-                      CONTRACTED-RULE-FLAG #contracted-rule,
-                      NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
-                      MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
-                      1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
-                      1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                      ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                      NOUN-FLAG #noun,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
-                      YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogred-aux-or-yogred-verb,
-                      BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
-                      MOOD-MARKER-FLAG #mood-marker,
-                      1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
-                      1DRA-AUX-FLAG #1dra-aux,
-                      SIMPLE-PERFECT-FLAG #simple-perfect,
+        [ INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
                       NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG #non-empty-aspect-prefix-marker,
-                      BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                      BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-super-main-verb-lex-verb-or-yong-aux,
                       PRON-NUM-MARKER-FLAG #pron-num-marker,
+                      MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
+                      CASE-MARKER-FLAG #case-marker,
+                      SIMPLE-PERFECT-FLAG #simple-perfect,
+                      NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
+                      BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
+                      1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+                      1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                      1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                      1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
+                      CONTRACTED-RULE-FLAG #contracted-rule,
+                      ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
+                      1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
+                      POLARITY-MARKER-FLAG #polarity-marker,
+                      MOOD-MARKER-FLAG #mood-marker,
                       BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG #byung-aux-or-red-aux-or-song-aux,
-                      3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun ] ] ].
+                      1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
+                      1DRA-AUX-FLAG #1dra-aux,
+                      ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
+                      3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun,
+                      MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #man-aux-or-med-aux-or-yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogmared-aux-or-yogred-aux-or-yogred-verb,
+                      1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                      BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                      1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
+                      NOUN-FLAG #noun,
+                      GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
+                      1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-man-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
+                      TENSE-MARKER-FLAG #tense-marker ] ] ].
 
 nonposs-lex-lex-rule := nonpossessive-lex-rule-1 & possessive-rule-lex-lex-rule-super &
   [ DTR.INFLECTED.BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG + ].
@@ -1322,67 +1181,67 @@ nonpossessive-lex-rule-1 := add-only-no-ccont-rule &
 
 polarity-marker-lex-rule-super := aspect-marker-prefixes-rule-dtr & aspect-marker-suffixes-rule-dtr & lex-rule & mood-marker-rule-dtr & nominalizer-rule-dtr & tense-marker-rule-dtr &
   [ INFLECTED [ POLARITY-MARKER-FLAG +,
-                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
-                1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
-                BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-song-verb-or-super-main-verb-lex-verb-or-yong-aux,
-                1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+                1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
+                NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG #non-empty-aspect-prefix-marker,
+                BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-super-main-verb-lex-verb-or-yong-aux,
+                PRON-NUM-MARKER-FLAG #pron-num-marker,
+                MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
                 CASE-MARKER-FLAG #case-marker,
-                TENSE-MARKER-FLAG #tense-marker,
-                ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
+                SIMPLE-PERFECT-FLAG #simple-perfect,
+                NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
+                BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
+                1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+                POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
                 1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
                 1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
-                GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
-                NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
-                MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
-                YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogred-aux-or-yogred-verb,
-                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
-                POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
-                NOUN-FLAG #noun,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
-                BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
+                ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
+                1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
                 MOOD-MARKER-FLAG #mood-marker,
-                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
-                1DRA-AUX-FLAG #1dra-aux,
-                SIMPLE-PERFECT-FLAG #simple-perfect,
-                NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG #non-empty-aspect-prefix-marker,
-                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
-                PRON-NUM-MARKER-FLAG #pron-num-marker,
                 BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG #byung-aux-or-red-aux-or-song-aux,
-                3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun ],
+                1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
+                1DRA-AUX-FLAG #1dra-aux,
+                ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
+                3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun,
+                MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #man-aux-or-med-aux-or-yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogmared-aux-or-yogred-aux-or-yogred-verb,
+                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
+                NOUN-FLAG #noun,
+                GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
+                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-man-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
+                TENSE-MARKER-FLAG #tense-marker ],
     DTR polarity-marker-rule-dtr &
-        [ INFLECTED [ 1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
-                      BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-song-verb-or-super-main-verb-lex-verb-or-yong-aux,
-                      1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+        [ INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
+                      NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG #non-empty-aspect-prefix-marker,
+                      BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-super-main-verb-lex-verb-or-yong-aux,
+                      PRON-NUM-MARKER-FLAG #pron-num-marker,
+                      MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
                       CASE-MARKER-FLAG #case-marker,
-                      TENSE-MARKER-FLAG #tense-marker,
-                      ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
+                      SIMPLE-PERFECT-FLAG #simple-perfect,
+                      NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
+                      BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
+                      1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+                      POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
                       1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
                       1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
-                      GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
-                      NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
-                      MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
-                      YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogred-aux-or-yogred-verb,
-                      1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                      ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
-                      POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                      1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
-                      NOUN-FLAG #noun,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
-                      BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
+                      ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
+                      1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
                       MOOD-MARKER-FLAG #mood-marker,
-                      1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
-                      1DRA-AUX-FLAG #1dra-aux,
-                      SIMPLE-PERFECT-FLAG #simple-perfect,
-                      NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG #non-empty-aspect-prefix-marker,
-                      BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
-                      PRON-NUM-MARKER-FLAG #pron-num-marker,
                       BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG #byung-aux-or-red-aux-or-song-aux,
-                      3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun ] ] ].
+                      1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
+                      1DRA-AUX-FLAG #1dra-aux,
+                      ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
+                      3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun,
+                      MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #man-aux-or-med-aux-or-yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogmared-aux-or-yogred-aux-or-yogred-verb,
+                      1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                      BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                      1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
+                      NOUN-FLAG #noun,
+                      GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
+                      1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                      1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-man-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
+                      TENSE-MARKER-FLAG #tense-marker ] ] ].
 
 ; This adds negative semantics to the verb's
 ; RELS list.
@@ -1399,7 +1258,7 @@ negation-marker-rule-lex-rule := cont-change-only-lex-rule & polarity-marker-lex
                       [ HARG #harg,
                         LARG #larg ] !> ],
     SYNSEM.LKEYS #lkeys,
-    DTR [ INFLECTED.YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG na,
+    DTR [ INFLECTED.MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG na,
           SYNSEM [ LKEYS #lkeys,
                    LOCAL [ CONT.HOOK [ XARG #xarg,
                                        INDEX #ind,
@@ -1417,7 +1276,7 @@ negation-marker-rule2-lex-rule := infl-lex-rule & negation-marker-rule-lex-rule 
                     CONTRACTED-RULE-FLAG #contracted-rule ] ].
 
 contracted-rule-lex-rule := const-lex-rule & negation-marker-rule-lex-rule &
-  [ DTR.INFLECTED [ 1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG na ], 
+  [ DTR.INFLECTED.1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG na,
     INFLECTED.CONTRACTED-RULE-FLAG + ].
 
 empty-polarity-marker-rule-lex-rule := add-only-no-ccont-rule & const-lex-rule & polarity-marker-lex-rule-super &
@@ -1426,70 +1285,70 @@ empty-polarity-marker-rule-lex-rule := add-only-no-ccont-rule & const-lex-rule &
 
 tense-marker-lex-rule-super := add-only-no-ccont-rule & aspect-marker-prefixes-rule-dtr & aspect-marker-suffixes-rule-dtr & mood-marker-rule-dtr & nominalizer-rule-dtr &
   [ INFLECTED [ TENSE-MARKER-FLAG +,
-                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
-                1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
-                BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-song-verb-or-super-main-verb-lex-verb-or-yong-aux,
-                1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
-                CASE-MARKER-FLAG #case-marker,
-                ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
-                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
-                POLARITY-MARKER-FLAG #polarity-marker,
-                1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
-                GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
-                CONTRACTED-RULE-FLAG #contracted-rule,
-                MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
-                1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
-                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
-                POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                NOUN-FLAG #noun,
                 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
-                YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogred-aux-or-yogred-verb,
-                BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
-                MOOD-MARKER-FLAG #mood-marker,
-                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
-                1DRA-AUX-FLAG #1dra-aux,
-                SIMPLE-PERFECT-FLAG #simple-perfect,
                 NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG #non-empty-aspect-prefix-marker,
-                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-super-main-verb-lex-verb-or-yong-aux,
                 PRON-NUM-MARKER-FLAG #pron-num-marker,
+                MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
+                CASE-MARKER-FLAG #case-marker,
+                SIMPLE-PERFECT-FLAG #simple-perfect,
+                BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
+                1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+                POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
+                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
+                CONTRACTED-RULE-FLAG #contracted-rule,
+                ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
+                1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
+                POLARITY-MARKER-FLAG #polarity-marker,
+                MOOD-MARKER-FLAG #mood-marker,
                 BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG #byung-aux-or-red-aux-or-song-aux,
-                3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun ],
+                1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
+                1DRA-AUX-FLAG #1dra-aux,
+                ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
+                3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun,
+                MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #man-aux-or-med-aux-or-yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogmared-aux-or-yogred-aux-or-yogred-verb,
+                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
+                NOUN-FLAG #noun,
+                GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
+                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-man-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux ],
     DTR tense-marker-rule-dtr &
-        [ INFLECTED [ 1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
-                      BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-song-verb-or-super-main-verb-lex-verb-or-yong-aux,
-                      1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
-                      CASE-MARKER-FLAG #case-marker,
-                      ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
-                      1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
-                      POLARITY-MARKER-FLAG #polarity-marker,
-                      1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
-                      GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
-                      CONTRACTED-RULE-FLAG #contracted-rule,
-                      MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
-                      1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
-                      1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                      ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
-                      POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                      NOUN-FLAG #noun,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
-                      YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogred-aux-or-yogred-verb,
-                      BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
-                      MOOD-MARKER-FLAG #mood-marker,
-                      1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
-                      1DRA-AUX-FLAG #1dra-aux,
-                      SIMPLE-PERFECT-FLAG #simple-perfect,
+        [ INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
                       NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG #non-empty-aspect-prefix-marker,
-                      BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                      BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-super-main-verb-lex-verb-or-yong-aux,
                       PRON-NUM-MARKER-FLAG #pron-num-marker,
+                      MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
+                      CASE-MARKER-FLAG #case-marker,
+                      SIMPLE-PERFECT-FLAG #simple-perfect,
+                      BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
+                      1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+                      POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
+                      1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                      1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
+                      CONTRACTED-RULE-FLAG #contracted-rule,
+                      ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
+                      1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
+                      POLARITY-MARKER-FLAG #polarity-marker,
+                      MOOD-MARKER-FLAG #mood-marker,
                       BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG #byung-aux-or-red-aux-or-song-aux,
-                      3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun ] ] ].
+                      1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
+                      1DRA-AUX-FLAG #1dra-aux,
+                      ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
+                      3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun,
+                      MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #man-aux-or-med-aux-or-yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogmared-aux-or-yogred-aux-or-yogred-verb,
+                      1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                      BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                      1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
+                      NOUN-FLAG #noun,
+                      GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
+                      1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                      1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-man-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux ] ] ].
 
 non-empty-tense-marker-rule-lex-rule := infl-lex-rule & tense-marker-lex-rule-super &
-  [ DTR [ INFLECTED.BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG na ], 
+  [ DTR.INFLECTED.BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG na,
     INFLECTED.NON-EMPTY-TENSE-MARKER-RULE-FLAG + ].
 
 past-tense-rule-lex-rule := non-empty-tense-marker-rule-lex-rule &
@@ -1526,69 +1385,69 @@ dgos-lex-lex-rule := infl-lex-rule & tense-marker-lex-rule-super &
 
 mood-marker-lex-rule-super := add-only-no-ccont-rule & nominalizer-rule-dtr &
   [ INFLECTED [ MOOD-MARKER-FLAG +,
-                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
-                1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
-                BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-song-verb-or-super-main-verb-lex-verb-or-yong-aux,
-                1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
-                CASE-MARKER-FLAG #case-marker,
-                TENSE-MARKER-FLAG #tense-marker,
-                ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
-                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
-                POLARITY-MARKER-FLAG #polarity-marker,
-                1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
-                GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
-                CONTRACTED-RULE-FLAG #contracted-rule,
-                NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
-                MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
-                1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
-                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
-                POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                NOUN-FLAG #noun,
                 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
-                YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogred-aux-or-yogred-verb,
-                BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
-                1DRA-AUX-FLAG #1dra-aux,
-                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
-                SIMPLE-PERFECT-FLAG #simple-perfect,
                 NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG #non-empty-aspect-prefix-marker,
-                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-super-main-verb-lex-verb-or-yong-aux,
                 PRON-NUM-MARKER-FLAG #pron-num-marker,
+                MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
+                CASE-MARKER-FLAG #case-marker,
+                SIMPLE-PERFECT-FLAG #simple-perfect,
+                NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
+                BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
+                1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+                POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
+                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
+                CONTRACTED-RULE-FLAG #contracted-rule,
+                ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
+                1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
+                POLARITY-MARKER-FLAG #polarity-marker,
                 BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG #byung-aux-or-red-aux-or-song-aux,
-                3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun ],
+                1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
+                1DRA-AUX-FLAG #1dra-aux,
+                ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
+                GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
+                MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #man-aux-or-med-aux-or-yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogmared-aux-or-yogred-aux-or-yogred-verb,
+                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
+                NOUN-FLAG #noun,
+                3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun,
+                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-man-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
+                TENSE-MARKER-FLAG #tense-marker ],
     DTR mood-marker-rule-dtr &
-        [ INFLECTED [ 1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
-                      BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-song-verb-or-super-main-verb-lex-verb-or-yong-aux,
-                      1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
-                      CASE-MARKER-FLAG #case-marker,
-                      TENSE-MARKER-FLAG #tense-marker,
-                      ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
-                      1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
-                      POLARITY-MARKER-FLAG #polarity-marker,
-                      1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
-                      GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
-                      CONTRACTED-RULE-FLAG #contracted-rule,
-                      NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
-                      MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
-                      1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
-                      1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                      ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
-                      POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                      NOUN-FLAG #noun,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
-                      YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogred-aux-or-yogred-verb,
-                      BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
-                      1DRA-AUX-FLAG #1dra-aux,
-                      1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
-                      SIMPLE-PERFECT-FLAG #simple-perfect,
+        [ INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
                       NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG #non-empty-aspect-prefix-marker,
-                      BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                      BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-super-main-verb-lex-verb-or-yong-aux,
                       PRON-NUM-MARKER-FLAG #pron-num-marker,
+                      MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
+                      CASE-MARKER-FLAG #case-marker,
+                      SIMPLE-PERFECT-FLAG #simple-perfect,
+                      NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
+                      BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
+                      1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+                      POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
+                      1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                      1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
+                      CONTRACTED-RULE-FLAG #contracted-rule,
+                      ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
+                      1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
+                      POLARITY-MARKER-FLAG #polarity-marker,
                       BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG #byung-aux-or-red-aux-or-song-aux,
-                      3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun ] ] ].
+                      1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
+                      1DRA-AUX-FLAG #1dra-aux,
+                      ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
+                      GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
+                      MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #man-aux-or-med-aux-or-yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogmared-aux-or-yogred-aux-or-yogred-verb,
+                      1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                      BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                      1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
+                      NOUN-FLAG #noun,
+                      3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun,
+                      1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                      1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-man-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
+                      TENSE-MARKER-FLAG #tense-marker ] ] ].
 
 non-empty-mood-marker-rule-lex-rule := infl-lex-rule & mood-marker-lex-rule-super &
   [ DTR.INFLECTED.SIMPLE-PERFECT-FLAG na ].
@@ -1615,67 +1474,67 @@ empty-mood-marker-rule-lex-rule := const-lex-rule & mood-marker-lex-rule-super.
 
 aspect-marker-suffixes-lex-rule-super := add-only-no-ccont-rule & mood-marker-rule-dtr & nominalizer-rule-dtr &
   [ INFLECTED [ ASPECT-MARKER-SUFFIXES-FLAG +,
-                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
-                1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
-                BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-song-verb-or-super-main-verb-lex-verb-or-yong-aux,
-                1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+                1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
                 NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG #non-empty-aspect-prefix-marker,
-                TENSE-MARKER-FLAG #tense-marker,
-                ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
+                BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-super-main-verb-lex-verb-or-yong-aux,
+                PRON-NUM-MARKER-FLAG #pron-num-marker,
+                MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
+                CASE-MARKER-FLAG #case-marker,
+                NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
+                BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
+                1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+                POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
                 1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
                 1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
-                GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
                 CONTRACTED-RULE-FLAG #contracted-rule,
-                NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
-                MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
-                YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogred-aux-or-yogred-verb,
-                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                CASE-MARKER-FLAG #case-marker,
-                POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
-                NOUN-FLAG #noun,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
-                BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
-                MOOD-MARKER-FLAG #mood-marker,
-                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
-                1DRA-AUX-FLAG #1dra-aux,
+                ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
+                1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
                 POLARITY-MARKER-FLAG #polarity-marker,
-                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
-                PRON-NUM-MARKER-FLAG #pron-num-marker,
+                MOOD-MARKER-FLAG #mood-marker,
                 BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG #byung-aux-or-red-aux-or-song-aux,
-                3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun ],
+                1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
+                1DRA-AUX-FLAG #1dra-aux,
+                3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun,
+                MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #man-aux-or-med-aux-or-yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogmared-aux-or-yogred-aux-or-yogred-verb,
+                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
+                NOUN-FLAG #noun,
+                GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
+                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-man-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
+                TENSE-MARKER-FLAG #tense-marker ],
     DTR aspect-marker-suffixes-rule-dtr &
-        [ INFLECTED [ 1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
-                      BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-song-verb-or-super-main-verb-lex-verb-or-yong-aux,
-                      1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+        [ INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
                       NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG #non-empty-aspect-prefix-marker,
-                      TENSE-MARKER-FLAG #tense-marker,
-                      ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
+                      BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-super-main-verb-lex-verb-or-yong-aux,
+                      PRON-NUM-MARKER-FLAG #pron-num-marker,
+                      MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
+                      CASE-MARKER-FLAG #case-marker,
+                      NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
+                      BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
+                      1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+                      POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
                       1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
                       1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
-                      GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
                       CONTRACTED-RULE-FLAG #contracted-rule,
-                      NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
-                      MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
-                      YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogred-aux-or-yogred-verb,
-                      1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                      CASE-MARKER-FLAG #case-marker,
-                      POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                      1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
-                      NOUN-FLAG #noun,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
-                      BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
-                      MOOD-MARKER-FLAG #mood-marker,
-                      1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
-                      1DRA-AUX-FLAG #1dra-aux,
+                      ASPECT-MARKER-PREFIXES-FLAG #aspect-marker-prefixes,
+                      1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
                       POLARITY-MARKER-FLAG #polarity-marker,
-                      BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
-                      PRON-NUM-MARKER-FLAG #pron-num-marker,
+                      MOOD-MARKER-FLAG #mood-marker,
                       BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG #byung-aux-or-red-aux-or-song-aux,
-                      3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun ] ] ].
+                      1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
+                      1DRA-AUX-FLAG #1dra-aux,
+                      3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun,
+                      MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #man-aux-or-med-aux-or-yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogmared-aux-or-yogred-aux-or-yogred-verb,
+                      1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                      BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                      1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
+                      NOUN-FLAG #noun,
+                      GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
+                      1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                      1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-man-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
+                      TENSE-MARKER-FLAG #tense-marker ] ] ].
 
 simple-perfect-lex-rule := aspect-marker-suffixes-lex-rule-super & infl-lex-rule &
   [ DTR.INFLECTED.NON-EMPTY-ASPECT-PREFIX-MARKER-FLAG na,
@@ -1688,67 +1547,67 @@ empty-aspect-marker-suffix-rule-lex-rule := aspect-marker-suffixes-lex-rule-supe
 
 aspect-marker-prefixes-lex-rule-super := add-only-no-ccont-rule & aspect-marker-suffixes-rule-dtr & mood-marker-rule-dtr & nominalizer-rule-dtr &
   [ INFLECTED [ ASPECT-MARKER-PREFIXES-FLAG +,
-                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
-                1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
-                BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-song-verb-or-super-main-verb-lex-verb-or-yong-aux,
-                1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
-                CASE-MARKER-FLAG #case-marker,
-                TENSE-MARKER-FLAG #tense-marker,
-                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
-                POLARITY-MARKER-FLAG #polarity-marker,
-                1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
-                GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
-                CONTRACTED-RULE-FLAG #contracted-rule,
-                NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
-                MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
-                YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogred-aux-or-yogred-verb,
-                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
-                POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
-                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
-                NOUN-FLAG #noun,
                 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
-                BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
-                MOOD-MARKER-FLAG #mood-marker,
-                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
-                1DRA-AUX-FLAG #1dra-aux,
-                SIMPLE-PERFECT-FLAG #simple-perfect,
-                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-super-main-verb-lex-verb-or-yong-aux,
                 PRON-NUM-MARKER-FLAG #pron-num-marker,
+                MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
+                CASE-MARKER-FLAG #case-marker,
+                SIMPLE-PERFECT-FLAG #simple-perfect,
+                NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
+                BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
+                1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+                POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
+                1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
+                CONTRACTED-RULE-FLAG #contracted-rule,
+                1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
+                POLARITY-MARKER-FLAG #polarity-marker,
+                MOOD-MARKER-FLAG #mood-marker,
                 BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG #byung-aux-or-red-aux-or-song-aux,
-                3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun ],
+                1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
+                1DRA-AUX-FLAG #1dra-aux,
+                ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
+                3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun,
+                MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #man-aux-or-med-aux-or-yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogmared-aux-or-yogred-aux-or-yogred-verb,
+                1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
+                NOUN-FLAG #noun,
+                GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
+                1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-man-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
+                TENSE-MARKER-FLAG #tense-marker ],
     DTR aspect-marker-prefixes-rule-dtr &
-        [ INFLECTED [ 1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
-                      BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-song-verb-or-super-main-verb-lex-verb-or-yong-aux,
-                      1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
-                      CASE-MARKER-FLAG #case-marker,
-                      TENSE-MARKER-FLAG #tense-marker,
-                      1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
-                      POLARITY-MARKER-FLAG #polarity-marker,
-                      1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
-                      GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
-                      CONTRACTED-RULE-FLAG #contracted-rule,
-                      NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
-                      MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
-                      YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogred-aux-or-yogred-verb,
-                      1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                      ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
-                      POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
-                      1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
-                      NOUN-FLAG #noun,
-                      1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
-                      BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
-                      MOOD-MARKER-FLAG #mood-marker,
-                      1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
-                      1DRA-AUX-FLAG #1dra-aux & na,
-                      SIMPLE-PERFECT-FLAG #simple-perfect,
-                      BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+        [ INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-med-aux-or-myong-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yod-aux-or-yogred-aux-or-yong-aux,
+                      BYUNG-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YONG-AUX-FLAG #byung-aux-or-song-aux-or-super-main-verb-lex-verb-or-yong-aux,
                       PRON-NUM-MARKER-FLAG #pron-num-marker,
+                      MED-AUX-OR-YOD-AUX-FLAG #med-aux-or-yod-aux,
+                      CASE-MARKER-FLAG #case-marker,
+                      SIMPLE-PERFECT-FLAG #simple-perfect,
+                      NON-EMPTY-TENSE-MARKER-RULE-FLAG #non-empty-tense-marker-rule,
+                      BARE-ABS-RULE-OR-DATIVE-LEX-RULE-OR-ERGATIVE-LEX-RULE-OR-INSTRUMENTAL-LEX-RULE-FLAG #bare-abs-rule-or-dative-lex-rule-or-ergative-lex-rule-or-instrumental-lex-rule,
+                      1DRA-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-yogmared-aux-or-yogred-aux,
+                      POSSESSIVE-RULE-LEX-FLAG #possessive-rule-lex,
+                      1DUG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                      1DUG-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dug-aux-or-man-aux-or-red-aux-or-yin-aux,
+                      CONTRACTED-RULE-FLAG #contracted-rule,
+                      1DUG-AUX-OR-BYUNG-AUX-OR-SONG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-byung-aux-or-song-aux-or-yong-aux,
+                      POLARITY-MARKER-FLAG #polarity-marker,
+                      MOOD-MARKER-FLAG #mood-marker,
                       BYUNG-AUX-OR-RED-AUX-OR-SONG-AUX-FLAG #byung-aux-or-red-aux-or-song-aux,
-                      3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun ] ] ].
+                      1DUG-AUX-OR-YONG-AUX-FLAG #1dug-aux-or-yong-aux,
+                      1DRA-AUX-FLAG #1dra-aux & na,
+                      ASPECT-MARKER-SUFFIXES-FLAG #aspect-marker-suffixes,
+                      3RD_PERSON_F_LEX-NOUN-FLAG #3rd_person_f_lex-noun,
+                      MAN-AUX-OR-MED-AUX-OR-YIN-AUX-OR-YIN-VERB-OR-YOD-AUX-OR-YOD-VERB-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YOGRED-VERB-FLAG #man-aux-or-med-aux-or-yin-aux-or-yin-verb-or-yod-aux-or-yod-verb-or-yogmared-aux-or-yogred-aux-or-yogred-verb,
+                      1DRA-AUX-OR-1DUG-AUX-OR-MED-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dra-aux-or-1dug-aux-or-med-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                      BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-SONG-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #byung-aux-or-man-aux-or-med-aux-or-red-aux-or-song-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux-or-yong-aux,
+                      1DRA-AUX-OR-MAN-AUX-OR-RED-AUX-OR-YIN-AUX-FLAG #1dra-aux-or-man-aux-or-red-aux-or-yin-aux,
+                      NOUN-FLAG #noun,
+                      GENITIVE-LEX-RULE-FLAG #genitive-lex-rule,
+                      1DUG-AUX-OR-BYUNG-AUX-OR-MAN-AUX-OR-MED-AUX-OR-RED-AUX-OR-YIN-AUX-OR-YOD-AUX-OR-YOGMARED-AUX-OR-YOGRED-AUX-FLAG #1dug-aux-or-byung-aux-or-man-aux-or-med-aux-or-red-aux-or-yin-aux-or-yod-aux-or-yogmared-aux-or-yogred-aux,
+                      1DRA-AUX-OR-1DUG-AUX-OR-BYUNG-AUX-OR-KYI-AUX-OR-MAN-AUX-OR-MYONG-AUX-OR-RED-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOGRED-AUX-OR-YONG-AUX-FLAG #1dra-aux-or-1dug-aux-or-byung-aux-or-kyi-aux-or-man-aux-or-myong-aux-or-red-aux-or-ryguin-aux-or-song-aux-or-super-main-verb-lex-verb-or-yogred-aux-or-yong-aux,
+                      TENSE-MARKER-FLAG #tense-marker ] ] ].
 
 non-empty-aspect-prefix-marker-lex-rule := aspect-marker-prefixes-lex-rule-super & infl-lex-rule &
   [ DTR.INFLECTED [ 1DUG-AUX-OR-BYUNG-AUX-OR-MED-AUX-OR-MYONG-AUX-OR-RYGUIN-AUX-OR-SONG-AUX-OR-SUPER-MAIN-VERB-LEX-VERB-OR-YOD-AUX-OR-YOGRED-AUX-OR-YONG-AUX-FLAG na,
@@ -1778,6 +1637,10 @@ nominalization-lex-rule := nominalizer-lex-rule-super.
 ;Constraint on MC used to be part of matrix.tdl
 ;;it applies to all wo implementations, except for v2
 
+same-subordinated-lex-rule := lex-rule &
+  [ SYNSEM.SUBORDINATED #subord,
+    DTR.SYNSEM.SUBORDINATED #subord ].
+
 ;;;;;;;;;;;;;;;;;;;
 ;;; Phrasal Types
 ;;;;;;;;;;;;;;;;;;;
@@ -1802,7 +1665,8 @@ high-no-rel-nominalized-clause-phrase := unary-phrase &
                                         SPR < >,
                                         SPEC < > ] ],
                             CONT.HOOK [ XARG #xarg,
-                                        LTOP #ltop ] ] ] > ].
+                                        LTOP #ltop ],
+                            COORD - ] ] > ].
 
 head-mod-poss-phrase-1 := basic-head-mod-phrase-simple & head-compositional & head-final &
   [ SYNSEM.LOCAL.CAT [ HEAD +np,
@@ -1847,19 +1711,6 @@ same-same-same-case-coord-rule := coord-phrase &
 
 ;;; Coordination Strategy 1
 
-;JC 2018 2-8 special inverse coordination rule. this is likely incorrect and dang truly means "with"
-; this takes care of coordination up until past the conjunct
-
-inv-monopoly-top-coord-rule := top-coord-rule &
-  [ LCOORD-DTR.SYNSEM.LOCAL.COORD +,
-    RCOORD-DTR.SYNSEM.LOCAL.COORD - ].
-
-inv-monopoly-mid-coord-rule := mid-coord-rule &
-  [ LCOORD-DTR.SYNSEM.LOCAL.COORD +,
-    RCOORD-DTR.SYNSEM.LOCAL.COORD - ].
-;
-
-
 n1-same-same-same-top-coord-rule := basic-n-top-coord-rule & monopoly-top-coord-rule & same-same-same-case-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
@@ -1881,17 +1732,6 @@ np1-bottom-coord-rule := conj-first-bottom-coord-rule & np-bottom-coord-phrase &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
 ;;; Coordination Strategy 2
-
-;;; EMB 2018-02-08 Paramaterized list type to restrict VP coordination to VPs that are either COMPS < > or are looking for non-verby complements.  This is probably a hack. The goal is to rule out coordination of auxiliaries.  May run afoul of coordination of sentential complement taking verbs.
-
-non-v-list := list.
-
-non-v-cons := olist & cons &
-  [ FIRST [ LOCAL.CAT.HEAD +njrpcdmo ],
-    REST  non-v-list ].
-
-non-v-null := non-v-list & null.
-
 
 vp2-top-coord-rule := basic-vp-top-coord-rule & apoly-top-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "2" ].

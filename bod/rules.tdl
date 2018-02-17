@@ -34,3 +34,7 @@ vp2-top-coord := vp2-top-coord-rule.
 vp2-bottom-coord := vp2-bottom-coord-rule.
 
 adj-head-scop := adj-head-scop-phrase.
+
+did-modifying-clause := did-modifying-clause-phrase.
+
+before-modifying-clause := before-modifying-clause-phrase.
