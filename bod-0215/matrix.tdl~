@@ -1,4 +1,3 @@
-
 ;;; -*- Mode: TDL; Package: LKB -*-
 ;;;
 ;;; HPSG Grammar Matrix
@@ -21,8 +20,6 @@
 ;;;
 ;;;  JACY Grammar: fundamentals.tdl, mrsbasic.tdl
 ;;;  Developed by Melanie Siegel, Emily M. Bender
-
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
 ;;
@@ -263,12 +260,6 @@ cat := cat-min &
     HC-LIGHT luk,
     POSTHEAD bool ].
 
-cat-sat := cat & 
- [ VAL [ SPR olist,
-       	 SPEC olist,
-	 COMPS olist,
-	 SUBJ olist ],
-  HEAD.MOD olist ].
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;  HEAD 
@@ -288,7 +279,6 @@ head := head-min &
   [ MOD list,
     PRD bool,
     KEYS keys_min ].
-
 
 ; (ERB 2004-08-19) We had previously shied away from defining head
 ; types because even head types that are expected to occur across
@@ -571,9 +561,8 @@ event-or-ref-index := individual.
 ; so those aren't included here.
 
 expl-ind := index.
-
-ref-ind := index & event-or-ref-index & 
-	[ PNG png ].
+ref-ind := index & event-or-ref-index &
+  [ PNG png ].
 
 ; Types encoding agreement information, analyzed as a part of the
 ; index, following Pollard & Sag 1994.  Which subtypes and features
@@ -993,24 +982,6 @@ same-val-lex-rule := lex-rule &
   [ SYNSEM.LOCAL.CAT.VAL #val,
     DTR.SYNSEM.LOCAL.CAT.VAL #val ].
 
-; CMC 2017-03-19 adding finer granularity for VAL
-
-same-subj-lex-rule := lex-rule &
-  [ SYNSEM.LOCAL.CAT.VAL.SUBJ #subj,
-    DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ #subj ].
-
-same-spr-lex-rule := lex-rule &
-  [ SYNSEM.LOCAL.CAT.VAL.SPR #spr,
-    DTR.SYNSEM.LOCAL.CAT.VAL.SPR #spr ].
-
-same-spec-lex-rule := lex-rule &
-  [ SYNSEM.LOCAL.CAT.VAL.SPEC #spec,
-    DTR.SYNSEM.LOCAL.CAT.VAL.SPEC #spec ].
-
-same-comps-lex-rule := lex-rule &
-  [ SYNSEM.LOCAL.CAT.VAL.COMPS #comps,
-    DTR.SYNSEM.LOCAL.CAT.VAL.COMPS #comps ].
-
 same-hc-light-lex-rule := lex-rule &
   [ SYNSEM.LOCAL.CAT.HC-LIGHT #hcl,
     DTR.SYNSEM.LOCAL.CAT.HC-LIGHT #hcl ].
@@ -1098,81 +1069,6 @@ val-change-only-lex-rule := cat-change-only-lex-rule &
 			    same-hc-light-lex-rule &
 			    same-posthead-lex-rule &
 			    same-mc-lex-rule.
-
-; CMC 2017-03-21 Additional convenience subtypes for
-; valence-changing operations, e.g., may need to change
-; local, non-local, and ccont.
-; CMC 2017-04-10 Revised to be less-constrained for scopal predicates
-; CMC 2017-05-08 Renamed to reduce confusion of rule intent. Note that these two
-; rules (cat-change-with-ccont-lex-rule and val-change-with-ccont-lex-rule)
-; also leave local and non-local unconstrained.
-
-same-gtop-lex-rule := lex-rule &
- [ C-CONT.HOOK.GTOP #gtop,
-   DTR.SYNSEM.LOCAL.CONT.HOOK.GTOP #gtop ].
-
-same-ltop-lex-rule := lex-rule &
- [ C-CONT.HOOK.LTOP #ltop,
-   DTR.SYNSEM.LOCAL.CONT.HOOK.LTOP #ltop ].
-
-same-index-lex-rule := lex-rule &
- [ C-CONT.HOOK.INDEX #idx,
-   DTR.SYNSEM.LOCAL.CONT.HOOK.INDEX #idx ].
-
-same-icons-key-lex-rule := lex-rule &
- [ C-CONT.HOOK.ICONS-KEY #icons,
-   DTR.SYNSEM.LOCAL.CONT.HOOK.ICONS-KEY #icons ].
-
-same-clause-key-lex-rule := lex-rule &
- [ C-CONT.HOOK.CLAUSE-KEY #clause,
-   DTR.SYNSEM.LOCAL.CONT.HOOK.CLAUSE-KEY #clause ].
-
-
-
-xarg-change-only-ccont-lex-rule :=  same-gtop-lex-rule &
-                                    same-ltop-lex-rule &
-                                    same-index-lex-rule &
-                                    same-icons-key-lex-rule &
-                                    same-clause-key-lex-rule.
-
-cat-change-with-ccont-lex-rule := same-modified-lex-rule &
-                                  same-light-lex-rule &
-                                  same-ctxt-lex-rule &
-                                  same-agr-lex-rule.
-
-val-change-with-ccont-lex-rule := cat-change-with-ccont-lex-rule &
-                                  same-head-lex-rule &
-                                  same-hc-light-lex-rule &
-                                  same-posthead-lex-rule &
-                                  same-mc-lex-rule.
-
-comps-change-only-lex-rule := same-subj-lex-rule &
-                              same-spr-lex-rule &
-                              same-spec-lex-rule.
-
-subj-change-only-lex-rule := same-comps-lex-rule &
-                             same-spr-lex-rule &
-                             same-spec-lex-rule.
-
-subj-and-comps-change-only-lex-rule := same-spr-lex-rule &
-                                       same-spec-lex-rule.
-
-; EKN 2017-12-13 Convenience types for possessive rules:
-
-local-change-with-ccont-lex-rule := same-non-local-lex-rule &
-			      	    same-modified-lex-rule &
-			      	    same-light-lex-rule.
-
-cat-mod-change-with-ccont-lex-rule := local-change-with-ccont-lex-rule &
-			    	      same-ctxt-lex-rule &		       
-			    	      same-cont-lex-rule &
-			    	      same-agr-lex-rule.
-
-head-change-with-ccont-lex-rule := cat-mod-change-with-ccont-lex-rule &
-			     	   same-val-lex-rule &
-			     	   same-hc-light-lex-rule &
-			     	   same-posthead-lex-rule &
-			     	   same-mc-lex-rule.
 
 ; ERB 2007-02-13 These two should only be inherited by ltol types,
 ; since they are redundant with constraints on lexeme-to-word-rule.
@@ -1902,13 +1798,11 @@ basic-head-comp-phrase := head-valence-phrase & head-compositional &
 			  binary-headed-phrase & 
   [ SYNSEM phr-synsem-min &
 		   [ LOCAL.CAT [ VAL [ SUBJ #subj,
-		     	       	       SPEC #spec,
 				       SPR #spr ],
 				 POSTHEAD #ph,
 				 HC-LIGHT #light ],
 		     LIGHT #light ],
     HEAD-DTR.SYNSEM [ LOCAL.CAT [ VAL [ SUBJ #subj,
-    		      		      	SPEC #spec,
 					SPR #spr ],
 				  HC-LIGHT #light,
 				  POSTHEAD #ph ]], 
@@ -2147,16 +2041,14 @@ marker-final-phrase := basic-binary-marker-phrase &
 
 ; SSH 2012-03-03 ICONS
 ; SSH 2013-02-19 deleting ICONS ?
-
-
-; EKN 2018-01-30
 basic-bare-np-phrase := head-only & head-valence-phrase &
   [ SYNSEM.LOCAL.CAT.VAL [ SPR < >,
 			   SUBJ < >,
-			   COMPS < > ],
+			   COMPS < >,
+			   SPEC < > ],
     HEAD-DTR.SYNSEM.LOCAL [ CAT [ HEAD noun,
 				  VAL [ SPR < unexpressed & 
-				      	      [ LOCAL.CAT.HEAD +nd,
+				      	      [ LOCAL.CAT.HEAD det,
 						OPT + ] >,
 					SUBJ < >,
 					COMPS < > ] ],
@@ -2321,8 +2213,7 @@ adj-head-phrase := basic-head-mod-phrase-simple & head-final &
              LIGHT #light ],
     HEAD-DTR.SYNSEM [ LOCAL.CAT.POSTHEAD #ph,
                       LIGHT #light ],
-    NON-HEAD-DTR.SYNSEM [ LOCAL.CAT [ VAL [ SPR olist,
-    			  	      	    COMPS < > ] ],
+    NON-HEAD-DTR.SYNSEM [ LOCAL.CAT [ VAL.COMPS < > ],
 			  NON-LOCAL [ SLASH 0-dlist,
 				      REL 0-dlist ],
                           MODIFIED.PERIPH #periph ] ].
@@ -2335,8 +2226,7 @@ adj-head-phrase := basic-head-mod-phrase-simple & head-final &
 ;; EMB pointed out as another english-specific leftover.
 head-adj-phrase := basic-head-mod-phrase-simple & head-initial & phrasal &
   [ SYNSEM.MODIFIED rmod,
-    NON-HEAD-DTR.SYNSEM [ LOCAL.CAT [ VAL.SPR olist,
-    			  	      POSTHEAD + ],
+    NON-HEAD-DTR.SYNSEM [ LOCAL.CAT.POSTHEAD +,
     			  NON-LOCAL.QUE 0-dlist ] ].
 
 ; We split head-adj-phrase and adj-head-phrase into two each,
@@ -2346,8 +2236,7 @@ head-adj-phrase := basic-head-mod-phrase-simple & head-initial & phrasal &
 ; we delay construction of intersective modification, but not scopal.
 
 scopal-mod-phrase := basic-head-mod-phrase-simple &
-  [ NON-HEAD-DTR.SYNSEM.LOCAL [ CAT [ VAL.SPR olist,
-    			      	      HEAD.MOD < [ LOCAL scopal-mod ] > ],
+  [ NON-HEAD-DTR.SYNSEM.LOCAL [ CAT.HEAD.MOD < [ LOCAL scopal-mod ] >,
 				CONT.HOOK #hook ],
     C-CONT [ HOOK #hook,
 	     HCONS <! !>,
@@ -2363,8 +2252,7 @@ scopal-mod-phrase := basic-head-mod-phrase-simple &
 
 isect-mod-phrase := basic-head-mod-phrase-simple & head-compositional &
   [ HEAD-DTR.SYNSEM.LOCAL [ CAT.MKG #mkg, CONT [ HOOK.LTOP #hand ] ],
-    NON-HEAD-DTR.SYNSEM.LOCAL [ CAT [ VAL.SPR olist,
-    			      	      HEAD.MOD < [ LOCAL intersective-mod & [ CAT.MKG #mkg ] ] > ],
+    NON-HEAD-DTR.SYNSEM.LOCAL [ CAT.HEAD.MOD < [ LOCAL intersective-mod & [ CAT.MKG #mkg ] ] >,
 				CONT.HOOK.LTOP #hand ],
     C-CONT [ HCONS <! !>,
 	     ICONS <! !> ] ].
@@ -2543,13 +2431,13 @@ raise-sem-lex-item := no-hcons-lex-item &
 basic-zero-arg := lex-item &
   [ ARG-ST < > ].
 
-zero-arg-nonslash := basic-zero-arg &
+zero-arg-nonslash := lex-item &
   [ SYNSEM.NON-LOCAL.SLASH 0-dlist ].
 
-zero-arg-nonrel := basic-zero-arg &
+zero-arg-nonrel := lex-item &
   [ SYNSEM.NON-LOCAL.REL 0-dlist ].
 
-zero-arg-nonque := basic-zero-arg &
+zero-arg-nonque := lex-item &
   [ SYNSEM.NON-LOCAL.QUE 0-dlist ].
 
 ; Non-argument taking items which introduce no non-local values.
@@ -2589,7 +2477,6 @@ basic-one-arg := lex-item &
     SYNSEM.NON-LOCAL [ SLASH #slash,
 		       REL #rel,
 		       QUE #que ] ].
-
 
 basic-two-arg := lex-item &
   [ ARG-ST < [ NON-LOCAL [ SLASH [ LIST #smiddle,
@@ -2715,12 +2602,9 @@ basic-three-arg-no-hcons := basic-three-arg & no-hcons-lex-item.
 
 ; (Kim is a student requires an analysis of predicative NPs.)
 
-; CHANGING: add cat-sat to args here (PASSES all reg tests)
-
 intransitive-lex-item := basic-one-arg-no-hcons & basic-icons-lex-item &
-  [ ARG-ST < [ LOCAL [ CAT cat-sat, 
-    	       	       CONT.HOOK [ INDEX ref-ind & #ind,
-				 ICONS-KEY.IARG1 #clause ] ] ]>,
+  [ ARG-ST < [ LOCAL.CONT.HOOK [ INDEX ref-ind & #ind,
+				 ICONS-KEY.IARG1 #clause ] ] >,
     SYNSEM [ LKEYS.KEYREL.ARG1 #ind,
 	     LOCAL.CONT.HOOK.CLAUSE-KEY #clause ] ].
 
@@ -2730,22 +2614,17 @@ intransitive-lex-item := basic-one-arg-no-hcons & basic-icons-lex-item &
 ; SSH 2013-12-11 Expletives cannot be topic or focus.
 
 expl-arg-only-lex-item := basic-one-arg-no-hcons & basic-icons-lex-item &
-   [ ARG-ST < [ LOCAL [ CONT.HOOK.INDEX expl-ind,
-     	      	      	CAT cat-sat ] ] > ].
+   [ ARG-ST < [ LOCAL.CONT.HOOK.INDEX expl-ind ] > ].
 
 ; Kim eats lunch.  Kim is fond of apples.
 ; Kim ga hiru gohan wo taberu.  
 ; Kim mange le dejeuner.  
 
-; CHANGING: add cat-sat to args here (PASSES all reg tests)
-
 transitive-lex-item := basic-two-arg-no-hcons & basic-icons-lex-item &
-   [ ARG-ST < [ LOCAL [ CAT cat-sat,
-     	      	      	CONT.HOOK [ INDEX ref-ind & #ind1,
-				  ICONS-KEY.IARG1 #clause ] ] ],
-	      [ LOCAL [ CAT cat-sat,
-	      	      	CONT.HOOK [ INDEX ref-ind & #ind2,
-				  ICONS-KEY.IARG1 #clause ] ] ]>,
+   [ ARG-ST < [ LOCAL.CONT.HOOK [ INDEX ref-ind & #ind1,
+				  ICONS-KEY.IARG1 #clause ] ],
+	      [ LOCAL.CONT.HOOK [ INDEX ref-ind & #ind2,
+				  ICONS-KEY.IARG1 #clause ] ] >,
      SYNSEM [ LKEYS.KEYREL [ ARG1 #ind1,
 			     ARG2 #ind2 ],
 	      LOCAL.CONT.HOOK.CLAUSE-KEY #clause ] ].
@@ -2754,18 +2633,13 @@ transitive-lex-item := basic-two-arg-no-hcons & basic-icons-lex-item &
 ; Kim ga Sandy ni hon wo ageru.
 ; Kim donne un livre a Sandy.
 
-; CHANGING: add cat-sat to args here  (PASSES all reg tests)
-
 ditransitive-lex-item := basic-three-arg-no-hcons & basic-icons-lex-item &
-   [ ARG-ST < [ LOCAL [ CAT cat-sat,
-     	      	      	CONT.HOOK [ INDEX ref-ind & #ind1,
-				  ICONS-KEY.IARG1 #clause ] ] ],
-	      [ LOCAL [ CAT cat-sat,
-	      	      	CONT.HOOK [ INDEX ref-ind & #ind2,
-				  ICONS-KEY.IARG1 #clause ] ] ],
-	      [ LOCAL [ CAT cat-sat,
-	      	      	CONT.HOOK [ INDEX ref-ind & #ind3,
-				  ICONS-KEY.IARG1 #clause ] ] ] >,
+   [ ARG-ST < [ LOCAL.CONT.HOOK [ INDEX ref-ind & #ind1,
+				  ICONS-KEY.IARG1 #clause ] ],
+	      [ LOCAL.CONT.HOOK [ INDEX ref-ind & #ind2,
+				  ICONS-KEY.IARG1 #clause ] ],
+	      [ LOCAL.CONT.HOOK [ INDEX ref-ind & #ind3,
+				  ICONS-KEY.IARG1 #clause ] ] >,
      SYNSEM [ LKEYS.KEYREL [ ARG1 #ind1,
 			     ARG2 #ind2,
 			     ARG3 #ind3 ],
@@ -2781,8 +2655,6 @@ ditransitive-lex-item := basic-three-arg-no-hcons & basic-icons-lex-item &
 ; intervening.
 
 
-; Changing: planning on adding cat-sat to all arguments that have ref-ind indexes from here on.
-
 clausal-arg-intrans-lex-item := basic-one-arg & one-icons-lex-item & 
    [ ARG-ST < [ LOCAL.CONT.HOOK [ LTOP #larg,
 				  INDEX #target ] ] >,
@@ -2797,14 +2669,12 @@ clausal-arg-intrans-lex-item := basic-one-arg & one-icons-lex-item &
 ; ERB 2007-01-22 Inserting qeqs now that we no longer have messages
 ; intervening.
 
-; changing: added cat-sat (PASSES all reg tests)
 
 clausal-first-arg-trans-lex-item := basic-two-arg & one-icons-lex-item & 
    [ ARG-ST < [ LOCAL.CONT.HOOK [ LTOP #larg,
 				  INDEX #target ] ],
-	      [ LOCAL [ CAT cat-sat,
-	      	      	CONT.HOOK [ INDEX ref-ind & #ind,
-				  ICONS-KEY.IARG1 #clause ] ] ]>,
+	      [ LOCAL.CONT.HOOK [ INDEX ref-ind & #ind,
+				  ICONS-KEY.IARG1 #clause ] ] >,
      SYNSEM [ LOCAL.CONT [ HOOK.CLAUSE-KEY #clause,
 			   HCONS <! qeq & [ HARG #harg,
 					    LARG #larg ] !>,
@@ -2819,12 +2689,9 @@ clausal-first-arg-trans-lex-item := basic-two-arg & one-icons-lex-item &
 ; ERB 2007-01-22 Inserting qeqs now that we no longer have messages
 ; intervening.
 
-; changing: added cat-sat (PASSES all reg tests)
-
 clausal-second-arg-trans-lex-item := basic-two-arg & one-icons-lex-item & 
-   [ ARG-ST < [ LOCAL [ CAT cat-sat,
-     	      	      	CONT.HOOK [ INDEX ref-ind & #ind,
-				  ICONS-KEY.IARG1 #clause ] ] ],
+   [ ARG-ST < [ LOCAL.CONT.HOOK [ INDEX ref-ind & #ind,
+				  ICONS-KEY.IARG1 #clause ] ],
 	      [ LOCAL.CONT.HOOK [ LTOP #larg,
 				  INDEX #target ] ] >,
      SYNSEM [ LOCAL.CONT [ HOOK.CLAUSE-KEY #clause,
@@ -2841,14 +2708,11 @@ clausal-second-arg-trans-lex-item := basic-two-arg & one-icons-lex-item &
 ; ERB 2007-01-22 Inserting qeqs now that we no longer have messages
 ; intervening.
 
-
 clausal-third-arg-ditrans-lex-item := basic-three-arg & one-icons-lex-item & 
-   [ ARG-ST < [ LOCAL [ CAT cat-sat,
-     	      	      	CONT.HOOK [ INDEX ref-ind & #ind1,
-				  ICONS-KEY.IARG1 #clause ] ] ],
-	      [ LOCAL [ CAT cat-sat,
-	      	      	CONT.HOOK [ INDEX ref-ind & #ind2,
-				  ICONS-KEY.IARG1 #clause ] ] ],
+   [ ARG-ST < [ LOCAL.CONT.HOOK [ INDEX ref-ind & #ind1,
+				  ICONS-KEY.IARG1 #clause ] ],
+	      [ LOCAL.CONT.HOOK [ INDEX ref-ind & #ind2,
+				  ICONS-KEY.IARG1 #clause ] ],
 	      [ LOCAL.CONT.HOOK [ LTOP #larg,
 				  INDEX #target ] ] >,
      SYNSEM [ LOCAL.CONT [ HOOK.CLAUSE-KEY #clause,
@@ -2869,10 +2733,8 @@ clausal-third-arg-ditrans-lex-item := basic-three-arg & one-icons-lex-item &
 ; ERB 2007-01-22 Inserting qeqs now that we no longer have messages
 ; intervening.
 
-
 clausal-expl-arg-lex-item := basic-two-arg & one-icons-lex-item & 
-   [ ARG-ST < [ LOCAL [ CAT cat-sat,
-     	      	      	CONT.HOOK.INDEX expl-ind ] ],  
+   [ ARG-ST < [ LOCAL.CONT.HOOK.INDEX expl-ind ],  
 	      [ LOCAL.CONT.HOOK [ LTOP #larg,
 				  INDEX #target ] ] >,
      SYNSEM [ LOCAL.CONT [ HOOK.CLAUSE-KEY #clause,
@@ -2883,12 +2745,9 @@ clausal-expl-arg-lex-item := basic-two-arg & one-icons-lex-item &
 
 ; Kim seems to sleep; Kim is sleeping.
 
-
 trans-first-arg-raising-lex-item := basic-two-arg &
-   [ ARG-ST < [ LOCAL [ CAT cat-sat,
-     	      	      	CONT.HOOK.INDEX #ind ] ],
-	      [ LOCAL [ CAT cat-sat,
-	      	      	CONT.HOOK.XARG #ind ] ] > ].
+   [ ARG-ST < [ LOCAL.CONT.HOOK.INDEX #ind ],
+	      [ LOCAL.CONT.HOOK.XARG #ind ] > ].
 
 ; Variant expecting a relation introduced by the raising
 ; predicate.  Adding qeq between ARG1 and LTOP.  Can't
@@ -2901,7 +2760,6 @@ trans-first-arg-raising-lex-item := basic-two-arg &
 ; ERB (2007-02-20) They should be able to now that things
 ; are de-messaged, since basic-verb-lex no longer inherits
 ; from no-hcons-lex-item.
-
 
 trans-first-arg-raising-lex-item-1 := trans-first-arg-raising-lex-item & 
 				      basic-icons-lex-item &  
@@ -2931,10 +2789,9 @@ trans-first-arg-raising-lex-item-2 := trans-first-arg-raising-lex-item &
 ; ERB 2007-01-22 Adding in qeq here.
 
 trans-first-arg-control-lex-item := basic-two-arg & basic-icons-lex-item &
-   [ ARG-ST < [ LOCAL [ CAT cat-sat,
-     	      	      	CONT.HOOK [ INDEX ref-ind & #ind,
+   [ ARG-ST < [ LOCAL.CONT.HOOK [ INDEX ref-ind & #ind,
 				  ICONS-KEY.IARG1 #clause,
-				  CLAUSE-KEY #clause ] ] ],
+				  CLAUSE-KEY #clause ] ],
 	      [ LOCAL.CONT.HOOK [ XARG #ind,
 				  LTOP #larg,
 				  ICONS-KEY.IARG1 #clause,
@@ -2950,15 +2807,13 @@ trans-first-arg-control-lex-item := basic-two-arg & basic-icons-lex-item &
 
 ; ERB 2007-01-22 Adding in qeq here.
 
-
 ditrans-first-arg-raising-lex-item := basic-three-arg & basic-icons-lex-item &
    [ ARG-ST < [ LOCAL.CONT.HOOK [ INDEX #ind1,
 				  ICONS-KEY.IARG1 #clause,
 				  CLAUSE-KEY #clause ] ],
-	      [ LOCAL [ CAT cat-sat,
-	      	      	CONT.HOOK [ INDEX ref-ind & #ind2,
+	      [ LOCAL.CONT.HOOK [ INDEX ref-ind & #ind2,
 				  ICONS-KEY.IARG1 #clause,
-				  CLAUSE-KEY #clause ] ] ],
+				  CLAUSE-KEY #clause ] ],
 	      [ LOCAL.CONT.HOOK [ XARG #ind1,
 				  LTOP #larg,
 				  ICONS-KEY.IARG1 #clause,
@@ -2973,21 +2828,17 @@ ditrans-first-arg-raising-lex-item := basic-three-arg & basic-icons-lex-item &
 
 ; ERB 2007-01-22 Adding in qeq here.
 
-
 ditrans-first-arg-control-lex-item := basic-three-arg & basic-icons-lex-item &
-   [ ARG-ST < [ LOCAL [ CAT cat-sat,
-     	      	      	CONT.HOOK [ INDEX ref-ind & #ind1,
+   [ ARG-ST < [ LOCAL.CONT.HOOK [ INDEX ref-ind & #ind1,
 				  ICONS-KEY.IARG1 #clause,
-				  CLAUSE-KEY #clause ] ] ],
-	      [ LOCAL [ CAT cat-sat,
-	      	      	CONT.HOOK [ INDEX ref-ind & #ind2,
+				  CLAUSE-KEY #clause ] ],
+	      [ LOCAL.CONT.HOOK [ INDEX ref-ind & #ind2,
 				  ICONS-KEY.IARG1 #clause,
-				  CLAUSE-KEY #clause ] ] ],
-	      [ LOCAL [ 
-	      	      	CONT.HOOK [ XARG #ind1,
+				  CLAUSE-KEY #clause ] ],
+	      [ LOCAL.CONT.HOOK [ XARG #ind1,
 				  LTOP #larg,
 				  ICONS-KEY.IARG1 #clause,
-				  CLAUSE-KEY #clause ] ] ]>,
+				  CLAUSE-KEY #clause ] ] >,
      SYNSEM [ LOCAL.CONT [ HOOK.CLAUSE-KEY #clause,
 			   HCONS <! qeq & [ HARG #harg,
 					    LARG #larg ] !> ],
@@ -3000,12 +2851,10 @@ ditrans-first-arg-control-lex-item := basic-three-arg & basic-icons-lex-item &
 
 ; ERB 2007-01-22 Adding in qeq here.
 
-
 ditrans-second-arg-raising-lex-item := basic-three-arg & basic-icons-lex-item &
-   [ ARG-ST < [ LOCAL [ CAT cat-sat,
-     	      	      	CONT.HOOK [ INDEX ref-ind & #ind1,
+   [ ARG-ST < [ LOCAL.CONT.HOOK [ INDEX ref-ind & #ind1,
 				  ICONS-KEY.IARG1 #clause,
-				  CLAUSE-KEY #clause ] ] ],
+				  CLAUSE-KEY #clause ] ],
 	      [ LOCAL.CONT.HOOK [ INDEX #ind2,
 				  ICONS-KEY.IARG1 #clause,
 				  CLAUSE-KEY #clause ] ],
@@ -3024,14 +2873,12 @@ ditrans-second-arg-raising-lex-item := basic-three-arg & basic-icons-lex-item &
 ; ERB 2007-01-22 Adding in qeq here.
 
 ditrans-second-arg-control-lex-item := basic-three-arg & basic-icons-lex-item &
-   [ ARG-ST < [ LOCAL [ CAT cat-sat,
-     	      	      	CONT.HOOK [ INDEX ref-ind & #ind1,
+   [ ARG-ST < [ LOCAL.CONT.HOOK [ INDEX ref-ind & #ind1,
 				  ICONS-KEY.IARG1 #clause,
-				  CLAUSE-KEY #clause ] ] ],
-	      [ LOCAL [ CAT cat-sat,
-	      	      	CONT.HOOK [ INDEX ref-ind & #ind2,
+				  CLAUSE-KEY #clause ] ],
+	      [ LOCAL.CONT.HOOK [ INDEX ref-ind & #ind2,
 				  ICONS-KEY.IARG1 #clause,
-				  CLAUSE-KEY #clause ] ] ],
+				  CLAUSE-KEY #clause ] ],
 	      [ LOCAL.CONT.HOOK [ XARG #ind2,
 				  LTOP #larg,
 				  ICONS-KEY.IARG1 #clause,
@@ -3220,12 +3067,10 @@ basic-scopal-mod-adj-lex := basic-adjective-lex & scopal-mod-lex.
 
 ;;; Adpositions
 
-
 basic-adposition-lex := single-rel-lex-item & basic-icons-lex-item &
   [ SYNSEM [ LOCAL [ CAT [ HEAD adp,
-			   VAL.COMPS < [ LOCAL [ CAT cat-sat,
-			   	       	       	 CONT.HOOK [ INDEX #ind,
-							   ICONS-KEY.IARG1 #clause ] ] ] > ],
+			   VAL.COMPS < [ LOCAL.CONT.HOOK [ INDEX #ind,
+							   ICONS-KEY.IARG1 #clause ] ] > ],
 		     CONT.HOOK.CLAUSE-KEY #clause ],
 	     LKEYS.KEYREL arg12-ev-relation & [ ARG2 #ind ] ] ].
 
@@ -3628,7 +3473,8 @@ n-coord-phrase := coord-phrase &
     RCOORD-DTR.SYNSEM.LOCAL.CAT.HEAD noun ].
 
 basic-n-top-coord-rule := n-coord-phrase &
-  [ C-CONT [ RELS <! !>,
+  [ SYNSEM.LOCAL.CAT.VAL.SPR < [ ] >,
+    C-CONT [ RELS <! !>,
 	     HCONS <! !> ]].
 
 basic-n-mid-coord-rule := n-coord-phrase &
@@ -3652,7 +3498,8 @@ np-coord-phrase := coord-phrase &
     RCOORD-DTR.SYNSEM.LOCAL.CAT.HEAD noun ].
 
 basic-np-top-coord-rule := np-coord-phrase &
-  [ C-CONT [ HOOK [ LTOP #ltop,
+  [ SYNSEM.LOCAL.CAT.VAL.SPR < >,
+    C-CONT [ HOOK [ LTOP #ltop,
                     INDEX #ind ],
              RELS <! [ PRED "exist_q_rel", ARG0 #ind, RSTR #ltop ] !>,
 	     HCONS <! !> ]].

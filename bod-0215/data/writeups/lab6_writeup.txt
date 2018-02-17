@@ -1,0 +1,346 @@
+John Cadigan
+Ling 567
+February 14, 2018
+
+Lab 6 Writeup
+
+A. Yes-no questions
+
+Yes-no questinons have the appropriate MRS. The SF value for the verb situation is ques. We have no evidence of a question focus clitic as in Russian ("li"). The following uses a transitive verb to simulate a copular one:
+
+Source: c:285
+Vetted: s
+Judgment: g
+Phenomena: q, cop
+kho     bodpa           redpas
+kho     bodpa           red-pas
+He      Tibetan         be-Q
+"Is he a Tibetan?"
+
+#ngas should be pas but is assimilated
+Source: c:285
+Vetted: s
+Judgment: g
+Phenomena: q
+khyedrang       bodla           phebs   myongngas
+khyedrang       bod-la          phebs   myong-ngas
+you             Tibet-DAT       go.HON  experiential.AUX-INTERR
+"Have you ever been to Tibet?"
+
+The implementation of this is the same as it was in the previous grammar.  
+
+B. Embedded clauses
+
+For the most part, embedded clauses are the same since we have not found examples of embedded interrogative complementary clauses. According to source B (108) and IGT in source E (136), the verb for ask and say is the same "zhu". The following IGT examples illustrating speech are not part of the testsuite and will not parse.
+
+Source: b:118
+Vetted: s
+Judgment: g
+Phenomena: speech
+nga	yong	giyin	zer
+nga	yong	gi-yin	zer
+I	come	LK-AUX	say
+"' I'll come,' he says."
+
+Furthermore, source D claims that form-wise indirect and direct speech are the same and that there are circumstances of "hybrid" reported speech which involves the use of the honorific system. Source B illustrates example of this in which an honorific verb and direct speech are used but mutually understood to indicate that those '"quoted" words' were not used because of lower honorific status of the speaker:
+
+Source: b:217
+Vetted: s
+Judgment: g
+Phenomena: speech
+nga	phebs		kyiyin	gsungs	kyi1dug
+nga	phebs		kyi-yin	gsungs	kyi-1dug
+I	come.HON	FUT-AUX	say	LK-AUX
+"She says she will come. (Lit. She says 'I shall come.')"
+
+We have a source which shows a quoted question showing an interrogative mood marker at the end of the sentence:
+
+Source: f:89
+Vetted: s
+Judgment: g
+Phenomena: speech
+blordorgyis	1aphralmar	dobdag	gangdu	yoddam		zhes	dris
+blordor-gyis	1aphralmar	dobdag	gangdu	yod-dam		zhes	dris
+Lodor-ERG	immediately	ownder	where	exist.INTERR	say	ask.PST
+"Lobdor immediately asked, 'Where is the owner?'"
+
+This doesn't necessarily disprove that embedded interrogative complement clauses exist in the language, but it suggests that's the case.
+
+For embedded declarative clauses, the grammar remains the same as it was before and most work:
+
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: emb-d
+khos    nga     bodla           phyinpa         shes    kyi
+kho-s   nga     bod-la          phyin-pa        shes    kyi
+He-ERG  I.ABS   Tibet-DAT       go.PST-NMZ      know    AUX
+"He knows I went to Tibet"
+
+Unfortunately the verb accepts S nodes which are not nominalized, and since the question marker is identical to that of nominalization, there is substantial ambiguity. The parse with the correct MRS does exist within the 4 though. The above is derived from a sentence which exhibits fronting (S SUBJ V):
+
+Source: c:284
+Vetted: s
+Judgment: g
+Phenomena: emb-d
+nga     bodla           phyinpa         khos    shes    kyi
+nga     bod-la          phyin-pa        kho-s   shes    kyi
+I.ABS   Tibet-DAT       go.PST-NMZ      he-ERG  know    AUX
+"He knows I went to Tibet"
+
+The implementation remains yet the same as it was the previous lab. There was an issue with the root unifying with NMZ clauses to form a full sentence in generation and parsing. We, therefore, added a constraint to the root node to prohibit this:
+
+root := sign &
+   [ SYNSEM [ NON-LOCAL non-local-none,
+              LOCAL [ COORD -,
+-                     CAT [ VAL [ SUBJ < >,
++                     CAT [ HEAD.NMZ -, 
++                           VAL [ SUBJ < >,
+
+We added a corresponding testsuite item; "pa", the most common nominalization suffix,  would create a grammatical interrogative sentence so we chose another:
+
+#
+# ending in nominalization
+#
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: emb-d
+kho     laska           byed    yodmkhan
+kho     laska           byed    yod-mkhan
+he.ABS  work.ABS        do      AUX-NMZ
+"He is working"
+
+C. Wh-questions
+
+In Tibetan, wh questions are formulated in-situ with the pronouns undergoing through case declension with an interrogative mood marker on the last verb. To implement this, we followed the instructions. 
+
+We added wh-pronouns and made them go through the case marking and possessive rules for the sake of consistency with other nouns--we do not have evidence that the wh-pronouns can be plural:
+
+wh-pronoun-noun-lex := case-marker-rule-dtr & possessive-rule-lex-rule-dtr & norm-hook-lex-item & basic-icons-lex-item &
+  [ SYNSEM [ LOCAL [ CAT [ HEAD noun,
+                           VAL [ SPR < >,
+                                 SUBJ < >,
+                                 COMPS < >,
+                                 SPEC < > ] ],
+                     CONT [ HOOK.INDEX.PNG.PER 3rd,
+                            RELS <! [ LBL #larg,
+                                       ARG0 #ind & ref-ind ],
+                                  [ PRED "wh_q_rel",
+                                    ARG0 #ind,
+                                    RSTR #harg ] !>,
+                            HCONS <! [ HARG #harg,
+                                        LARG #larg ] !> ] ],
+             NON-LOCAL.QUE <! #ind !> ] ].
+
+su := wh-pronoun-noun-lex &
+  [ STEM < "su" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_person_n_rel" ].
+
+We added the wh-int-cl clause and specified the mood to be interr(interr)--once other pieces are in place, this specification will be our means of constraining the application of this rule with forthcoming improvements:
+
+wh-int-cl := clause & head-compositional &  head-only &
+  [ SYNSEM [ LOCAL.CAT [ VAL #val,
+			 MC bool,
++			 CONT.HOOK.INDEX.E.MOOD interr ],
+	     NON-LOCAL non-local-none ],
+    C-CONT [ RELS <! !>,
+	     HCONS <! !>,
+	     HOOK.INDEX.SF ques ],
+    HEAD-DTR.SYNSEM [ LOCAL.CAT [ HEAD verb & [ FORM finite ],
+				  VAL #val & 
+				    [ SUBJ < >,
+				      COMPS < > ] ],
+		      NON-LOCAL [ SLASH <! !>,
+				  REL <! !>,
+				  QUE <! ref-ind !> ] ] ].
+
+We also added (and renamed) the eng-subj-phrase-rule:
+
+bod-subj-head-phrase := head-valence-phrase & head-compositional &
+              basic-binary-headed-phrase &
+  [ SYNSEM phr-synsem &
+           [ LOCAL.CAT [ POSTHEAD +,
+                 HC-LIGHT -,
+                 VAL [ SUBJ < >,
+                       COMPS #comps,
+                       SPR #spr ] ] ],
+    C-CONT [ HOOK.INDEX.SF prop-or-ques,
+         RELS <! !>,
+         HCONS <! !>,
+         ICONS <! !> ],
+    HEAD-DTR.SYNSEM.LOCAL.CAT.VAL [ SUBJ < #synsem >,
+                    COMPS #comps,    
+                    SPR #spr ],
+    NON-HEAD-DTR.SYNSEM #synsem & canonical-synsem &
+       [ LOCAL [ CAT [ VAL [ SUBJ olist,
+                 COMPS olist,
+                 SPR olist ] ] ],
+         NON-LOCAL [ SLASH 0-dlist & [ LIST < > ],
+             REL 0-dlist ] ]].
+
+Of our readily available sentences which come from authoritative sources, the only one which parses involves a copular verb:
+
+Source: b:130
+Vetted: s
+Judgment: g
+Phenomena: wh,c
+kyedrang   su    yinpa
+kyedrang   su    yin-pa
+you         who   be-INTERR
+'Who are you?'
+
+Based on evidence, we do know that wh-pronouns decline; this example does not parse because we do not implement the ablative case or adjunct phrases:
+
+Source: b:165
+Vetted: s
+Judgement: g
+Phenomena: c,wh
+kyedrang        ganas           phebspa
+kyedrang        ga-nas          phebs-pa
+you             what-ABL        come-INTERR
+'Where did you come from?'
+
+Another example which doesn't parse due to fronting among other things:
+
+Source: b:197
+Vetted: s
+Judgement: g
+Phenomena: c, wh
+chalag  digyad          sus             tshong  paredpa
+chalag  di-gyad         su-s            tshong  pa-red-pa
+thing   this-NUM        who-ERG         sell    LK-AUX-Q
+'Who sold the things?'
+
+Based on this, we created what we suppose are grammatical questions
+
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: wh, c,
+sus             stag            bsad            paredpas
+su-s            stag            bsad            pa-yin-pas
+who-ERG         tiger.ABS       kill.PST        LK-AUX.PRF
+'Who killed the tiger?'
+
+We suppose the following is accurate, but it doesn't parse; there was a unification failure between null and 1-list in the second item of LOCAL.QUE.LIST--similar to the initial modifications for question pronouns:
+
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: wh, c,
+sus             su      bsad            paredpas
+su-s            su      bsad            pa-yin-pas
+who-ERG         whom.ABS  kill.PST        LK-AUX.PRF
+'Who killed whom?'
+
+Since it is considered optional, we focused on other things.
+
+We have not been able to find instances of question pronouns in lower clauses, so we do not model it.
+
+D. One corpus sentence
+
+This week we managed to make the following sentence to parse. 
+
+#2
+Source: b:275
+Vetted: s
+Judgment: g
+Phenomena:adj
+bodla		zhedrag	grangmo		yogred
+bod-la		zhedrag	grang-mo	yogred
+Tibet-DAT	very	cold-NMZ	exist
+"It's very cold in Tibet (Tibetan is very cold)"
+
+We already have copular verbs and adjectives in last week's grammar, so the only thing we need to add is an adverb type that modifies adjectives:
+
+adverb-adj-lex := basic-adverb-lex & intersective-mod-lex &
+  [ SYNSEM [ LOCAL [ CAT [ HEAD.MOD < [ LOCAL.CAT.HEAD adj ]>,
+			   VAL [ SPR < >,
+				 SUBJ < >,
+				 COMPS < >,
+				 SPEC < > ]]]]].
+
+E. Grammar improvements
+
+One thing which helped improve the generation this week was the dramatic reduction of inflection rules in the morphology. Now, we have limited generations for most of the sentences we parsed. We did the following:
+
+1. Collapse all the different forms of affixes that has the same funtion into one:
+
+emph-suffix :=
+%suffix (* ga)(* da)(* nga)
+emph-marker-rule-lex-rule.
+
+2. Further specify the singular number marker rule:
+
+singular-pron-rule-lex-rule := const-lex-rule & pron-num-marker-lex-rule-super &
+   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG.NUM sg ].
+
+3. Making aspect-suffixes rule to be finite as well temporarily. According to our observation, the aux/verb with simple perfect aspect also appears at the right most:
+
+#
+# Perfective verb
+#
+Source: b:160
+Vetted: s
+Judgment: g
+Phenomena: wo, c, tam
+khong  nangla   bzhugsshag
+khong nang-la  bzhugs-shag
+3SG inside-DAT fall-PRF
+'She is at home.'
+
+tdl snippets:
+
+aspect-marker-suffixes-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule &
+  [ INFLECTED #infl,
++   SYNSEM.LOCAL.CAT [ HEAD.FORM finite ], 
+    DTR aspect-marker-suffixes-rule-dtr &
+        [ INFLECTED #infl ] ].
+
+4. we also tried adding no-tense feature and no-aspect features and setting them to default by modifying the semi.vpm file like the following. But doing this has not brought improvements, so we changed them back:
+
+ E.ASPECT : E.ASPECT
+    prf <> prf
+    rec <> rec
+    pros <> pros
+    prog <> prog
+    no-aspect >> *
+    * << no-aspect
+
+5. We have also implemented a refactored grammar, adding empty tam marker rules and making all the tam inflections obligatory. However, doing this has significantly increased the ambiguity and reduced our coverge. However, doing this may further reduce our generation with what we tried in step 4. We gave up this version temporarily due to the limited time.
+
+Between this week and last week, we were able to make the following not parse by
+specifying the FORM becomes finite when a verb is inflected in the interrogative:
+
+pas-interr-lex-rule := interr-marker-rule-lex-rule &
+  [ SYNSEM.LOCAL.CAT.HEAD.FORM finite  ,
+    DTR.INFLECTED.1DUG-AUX-OR-1DUG-VERB-OR-BYUNG-AUX-OR-SONG-AUX-OR-SONG-VERB-OR-YONG-AUX-FLAG na ].
+ 
+Eliminating parses from this example:
+
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: q
+khyedrang       bodla           phebspas        myongngas
+khyedrang       bod-la          phebs-pas       myong-ngas
+you             Tibet-DAT       go.HON-Q        experiential-Q
+"Have you ever been to Tibet?"
+
+F. Coverage and Overgeneration
+
+		Baseline	Current	
+Coverage 	47/83		48/83
+Ambiguity	1.81		2.34
+Overgeneration	2/31		0/31
+
+One reason that ambiguity has increased is that we now have issues with the wh-in-situ clause firing because mood is underspecified--we have interr specified but that will still unify with the underspecified "mood". With a forthcoming major refactoring of the grammar, we will have an obligatory succession of verb inflection rules which will allow us to take care of the underspecification issues.   
+Another way in which ambiguity has increased is that the wh-pronoun seems to optionally go through either of the possessive inflection rules. Ideally, it would behave like nouns and go through the rule obligatorily.
+
+Besides not parsing the sentence due to specifying FORM, we are also not parsing the previously mentioned negative nominalization example.
+
+Since we are parsing at least two more wh-question sentences, this means that a few no longer parse--we have not been able to track them down.
+
+
+

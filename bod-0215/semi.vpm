@@ -12,12 +12,12 @@ SPECI : SPECI
   * <> *
 
 SF : SF
-  prop <> prop
   ques <> ques
   prop-or-ques >> prop-or-ques
   prop << prop-or-ques
   comm <> comm
-  * <> *
+  * >> prop
+  prop << *
 
 COG-ST : COG-ST
   type-id <> type-id
@@ -46,7 +46,6 @@ PNG.PER : PNG.PER
 PNG.NUM : PNG.NUM
   pl <> pl
   sg <> sg
-  * <> *
 
 PNG.GEND : PNG.GEND
   f <> f
@@ -57,19 +56,23 @@ E.TENSE : E.TENSE
   present <> present
   past <> past
   future <> future
-  * <> *
+  no-tense <> no-tense
 
 E.ASPECT : E.ASPECT
   prf <> prf
   rec <> rec
   pros <> pros
   prog <> prog
-  * <> *
+  no-aspect <> no-aspect
 
 E.MOOD : E.MOOD
-  indic <> indic
   interr <> interr
   emph <> emph
   corrob <> corrob
-  wh-interr <> wh-interr
-  * <> *
+  apparent <> apparent
+  possible <> possible
+  indic <> indic
+  * >> indic
+  indic << *
+
+
